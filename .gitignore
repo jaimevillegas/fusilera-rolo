@@ -1,0 +1,22 @@
+# KiCad: respaldo automático local (tiene su propio repositorio Git adentro)
+.history/
+
+# KiCad: copias de restauración, respaldos y bloqueos
+_restore_backup_*/
+*-backups/
+~*.lck
+*.bak
+*.kicad_prl
+
+# KiCad: cachés y archivos generados
+fp-info-cache
+*-cache.lib
+*-rescue.lib
+*.net
+*.dsn
+*.ses
+
+# Sistema
+.DS_Store
+Thumbs.db
+*~
