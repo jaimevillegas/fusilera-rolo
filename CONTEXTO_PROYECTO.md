@@ -13,7 +13,7 @@ Cada canal es un interruptor high-side con **protección de sobrecorriente que s
 
 El diseño nació de un prototipo en protoboard (con MCP23017 y ESP32 devkit en zócalo). Se está replicando en KiCad **un canal a la vez**; cuando el canal esté validado se duplicará hasta 24.
 
-Cliente: el **BTS50010-1TAD es requerimiento suyo** (ya lo dimensionó). El estado de disparo **sí** se enviará al ESP32 por **entradas analógicas** (cada canal con una resistencia de valor distinto hacia una línea común; ver sección 6).
+Cliente: el **BTS50010-1TAD es requerimiento suyo** (ya lo dimensionó). El estado de disparo **sí** se enviará al ESP32, **en digital**, leyéndolo con un **segundo MCP23017** (ver sección 6). Se descartó la lectura analógica con resistencias escalonadas: con 24 canales en una sola línea quedaba ~80 mV entre niveles, ambigua con fallas simultáneas y con 24 valores de resistencia distintos en el BOM.
 
 ---
 
@@ -35,7 +35,7 @@ Cliente: el **BTS50010-1TAD es requerimiento suyo** (ya lo dimensionó). El esta
 | LEDs | Testigo de `IN`: **verde estándar** (~2,1 V). Testigo de falla (latch): **rojo**. 0805. |
 | Condensadores | Electrolíticos SMD (decisión del usuario) para `C1`, `C3`, `C5`. |
 | ESP32 | **Devkit V1 de 30 pines, removible** (en zócalos hembra). Alimentado por su pin `VIN` (5 V). Su pin `3V3` **no** se conecta a nuestro riel. |
-| Expansión de E/S | **1 × MCP23017** (I²C, 16 salidas) + **8 salidas directas** del ESP32 = 24 canales. `RESET` del MCP fijo a 3.3 V. |
+| Expansión de E/S | **MCP23017 #1** (`U4`, 0x20): 16 salidas. **MCP23017 #2** (`U5`, 0x21): 14 entradas de falla + 2 salidas (GPA7/GPB7 solo salida). El resto, pines directos del ESP32 (24 canales). `RESET` de ambos fijo a 3.3 V. |
 | Regulador | Opción **A**: buck 12→5 V (alimenta el devkit con diodo Schottky anti-retroalimentación USB) + LDO 5→3.3 V para la lógica. **Pendiente de diseñar**. |
 
 ---
@@ -53,7 +53,7 @@ Cliente: el **BTS50010-1TAD es requerimiento suyo** (ya lo dimensionó). El esta
 6. **LED rojo `D3`** (con `R12` 1k) enciende cuando el latch está disparado.
 7. **LED verde `D2`** (testigo de `IN` alto): buffer con `Q1` (MMBT2222A). `R7` (100k) toma `IN` hacia la base; `R10` (2.2k) + `D2` desde +3.3V al colector; emisor a GND. LED encendido = hay señal alta en `IN`.
 8. Alimentación: `C1` (100 µF/16 V) en `U1` V+, `U1` pin 12 a GND, `U2` pin 14 a +3.3V, pin 7 a GND. Desacoples de 100 nF `C2` y `C4` (uno por cada integrado), cableados.
-9. **Salida de falla hacia el ESP32** (en definición): el nodo de disparo (`U2A-2`, `U2` pin 6) irá, a través de **una resistencia propia por canal**, a una línea analógica compartida (`FALLA_ESP32`). La resistencia debe ir **entre** el nodo y la etiqueta: si la etiqueta cuelga directo del nodo, KiCad une las dos redes y avisa de conflicto.
+9. **Salida de falla hacia el ESP32:** el nodo de disparo (`TRIP` = `U2A-2`, `U2` pin 6) va **directo a una entrada digital**: del MCP23017 #2 (`U5`) o de un pin libre del ESP32 (ver sección 6). Es una señal digital de 0/3.3 V; el ESP32 lee 1 = canal disparado.
 
 ### Compuertas/comparadores restantes (para los otros canales)
 - 74HC132: cada chip da 2 canales → 24 canales = 12 chips (las compuertas C y D de `U2` son el 2.º latch).
@@ -74,7 +74,8 @@ Pendiente: pasar a **etiquetas locales con nombres funcionales** (`IN`, `IS`, `C
 | U1 | LM339D | SOIC-14_3.9x8.7mm_P1.27mm | 4 comparadores |
 | U2 | 74HC132D | SOIC-14_3.9x8.7mm_P1.27mm | Latch (símbolo `74xx:74LS132`, mismo pinout; KiCad no trae 74HC132) |
 | U3 | BTS50010-1TAD | TO-263-7_TabPin4 | **Verificar la huella contra el plano del datasheet (PG-TO263-7-10)** |
-| U4 | MCP23017-E/SO | SOIC-28W_7.5x17.9mm_P1.27mm | Expansor I²C de 16 E/S. Sin cablear. **Verificar código de pedido y temperatura** |
+| U4 | MCP23017-E/SO | SOIC-28W_7.5x17.9mm_P1.27mm | Expansor I²C #1: 16 salidas (0x20). Sin cablear. **Verificar código de pedido y temperatura** |
+| U5 | MCP23017-E/SO | SOIC-28W_7.5x17.9mm_P1.27mm | Expansor I²C #2: 14 entradas de falla + 2 salidas (0x21). Sin cablear |
 | Q1 | MMBT2222A | SOT-23 | Buffer del LED verde. Pines SOT-23: B=1, E=2, C=3 |
 | Q2 | MMBT2222A | SOT-23 | Baja `IN` al disparar |
 | D1 | BAT54C | SOT-23 | OR de entradas. Elegir marca conocida (p. ej. Nexperia BAT54C,215) |
@@ -96,6 +97,7 @@ Pendiente: pasar a **etiquetas locales con nombres funcionales** (`IN`, `IS`, `C
 | C2, C4 | 100nF | C_0805 | Desacople de `U1`/`U2` |
 | C3 | 1uF 25V | CP_Elec_4x5.4 | Reset RC (electrolítico) |
 | C5 | 1uF 25V | CP_Elec_4x5.4 | Filtro de `IS`. Ver nota de fuga |
+| C6 | 100nF | C_0805 | Desacople de `U5`. Sin cablear |
 
 ---
 
@@ -140,10 +142,8 @@ Derecha: 16 D23, 17 D22(SCL), 18 TX0(GPIO1), 19 RX0(GPIO3), 20 D21(SDA), 21 D19,
 |---|---|---|
 | 20 | D21 | **SDA** → MCP23017 (pull-up 4.7k a 3.3V) |
 | 17 | D22 | **SCL** → MCP23017 (pull-up 4.7k a 3.3V) |
-| 4 | D34 | **Falla analógica 1** (ADC1, solo entrada) |
-| 5 | D35 | **Falla analógica 2** (ADC1, solo entrada) |
-| 2, 3 | VP, VN | Entradas libres (ADC1), reserva |
-| 13, 25, 24, 22, 21, 8, 9, 10, 6, 7, 26, 16 | D13, D16, D17, D18, D19, D25, D26, D27, D32, D33, D4, D23 | **Salidas directas seguras** (12 disponibles, se usan 8 → 4 de reserva) |
+| 2, 3, 4, 5 | VP, VN, D34, D35 | **Entradas de falla digitales** (solo entrada, sin pull internos; la señal `TRIP` es push-pull de 0/3.3 V). Se usan 2 al inicio (18 canales) y 4 con 24 canales |
+| 13, 25, 24, 22, 21, 8, 9, 10, 6, 7, 26, 16 | D13, D16, D17, D18, D19, D25, D26, D27, D32, D33, D4, D23 | **Pines directos seguros** (12 disponibles). Con 18 canales no se usan; con 24 canales: 6 como salidas y 6 como entradas de falla |
 | 11 | D14 | Reserva (JTAG), con precaución |
 | 23, 28, 27, 12 | D5, D15, D2, D12 | **Evitar** (arranque) |
 | 18, 19 | TX0, RX0 | **Evitar** (programación/log USB) |
@@ -152,30 +152,79 @@ Derecha: 16 D23, 17 D22(SCL), 18 TX0(GPIO1), 19 RX0(GPIO3), 20 D21(SDA), 21 D19,
 | 14, 29 | GND | GND |
 | 30 | 3V3 | **No conectar** (marca de no conexión) |
 
-### MCP23017 (`U4`, SOIC-28W)
+### MCP23017 #1 (`U4`, SOIC-28W) — salidas
 - 16 salidas (GPA0–7 = pines 21–28, GPB0–7 = pines 1–8) para 16 canales; los otros 8 canales van a las salidas directas del ESP32.
-- `SDA` pin 13 y `SCK` pin 12 al ESP32; pull-ups de 4.7k.
-- `RESET` (pin 18) **fijo a 3.3 V** (se libera D23 como salida directa); `A0`–`A2` (15–17) a GND (dirección 0x20); `VDD` pin 9 a +3.3V con 100 nF, `VSS` pin 10 a GND; `INTA`/`INTB` sin usar; `NC` pines 11 y 14.
+- `SDA` pin 13 y `SCK` pin 12 al ESP32; pull-ups de 4.7k (compartidos con `U5`).
+- `RESET` (pin 18) **fijo a 3.3 V**; `A0`–`A2` (15–17) a GND (dirección 0x20); `VDD` pin 9 a +3.3V con 100 nF (`C` de desacople), `VSS` pin 10 a GND; `INTA`/`INTB` sin usar; `NC` pines 11 y 14.
 - GPA7/GPB7 son solo salida (no importa: se usan como salidas).
 - Al arrancar, el MCP23017 deja todos los pines como entradas de alta impedancia → con `R8` (pull-down) **los canales arrancan apagados**.
 
-### Falla analógica
-Dos entradas analógicas (D34, D35): cada canal envía su estado de disparo por una resistencia de valor distinto hacia una de esas líneas, de modo que el ESP32 identifique qué canal falló. Hay que definir cuántos canales por línea y los valores (el ADC del ESP32 solo distingue algunos niveles con fiabilidad, no sirve para fallas simultáneas sin una codificación cuidadosa).
+### MCP23017 #2 (`U5`, SOIC-28W) — entradas de falla
+- Lee las 16 entradas de falla (`TRIP` de cada canal) por I²C, dirección **0x21** (`A0` a 3.3 V, `A1`/`A2` a GND). Mismo bus (`SDA`/`SCK`) y mismos pull-ups que `U4`.
+- `RESET` fijo a 3.3 V; `VDD` con `C6` (100 nF) de desacople.
+- **GPA7 y GPB7 son solo salida** (confirmado: el datasheet actual del MCP23017 los restringe a salida; leerlos como entrada puede corromper SDA). Para entradas de falla solo valen GPA0–6 y GPB0–6 → **14 entradas** por MCP.
+- **Reparto acordado para 24 canales** (24 salidas + 24 fallas):
+  - Salidas: `U4` 16 (GPA0–7, GPB0–7) + **`U5` GPA7 y GPB7 como 2 salidas extra** + 6 salidas directas del ESP32 = 24.
+  - Fallas: `U5` GPA0–6 y GPB0–6 (14) + VP, VN, D34, D35 (4) + 6 pines directos libres = 24.
+  - Con **18 canales** (inicial): salidas `U4` (16) + `U5` GPA7/GPB7 (2); fallas `U5` (14) + VP, VN, D34, D35 (4). **No se usa ningún pin directo.**
+- Si el reparto de pines no cierra, la alternativa es un tercer MCP23017 o 3 × 74HC165 (3 pines del ESP32).
 
 ---
 
-## 7. Regulador (pendiente)
+## 7. Alimentación (en definición)
 
 ```
-IGN 12V ─ fusible ─ protección polaridad ─ TVS ─ buck 12→5V ─┬─ diodo Schottky ─► devkit ESP32 (pin VIN)
-                                                              └─ LDO 5→3.3V ─► lógica (74HC132, LM339, MCP23017, pull-ups, LEDs)
+Terminal de tornillo +12V (IGN) ─┬─► [fusible master: ubicación por definir] ─► plano Vbb ─► Vbb de los BTS (directo, sin diodo)
+                                 │
+                                 └─► fusible lógica (~1-2 A) ─► diodo Schottky (polaridad inversa) ─► TVS ─► cond. entrada ─► buck 12→5V ─┬─► Schottky ─► devkit ESP32 (VIN)
+                                                                                                                                       └─► LDO 5→3.3V ─► lógica
 ```
 
-- Presupuesto: devkit con WiFi ~0,5–0,7 A pico a 5 V; lógica ~100 mA o menos a 3.3 V → buck de **≥1,5 A**.
-- Entrada de carro: picos de hasta ~40 V (load dump), caídas a 6–8 V al arrancar el motor, posible polaridad inversa. Buck de entrada ancha (≥60 V cómodo), TVS, protección de polaridad (P-MOSFET o Schottky), fusible.
-- Candidatos a verificar (no confirmados): familias LMR36015-Q1, LM5164-Q1.
-- El pin 3V3 del devkit **no** se conecta a la lógica (evita conflicto con el USB).
-- Poner `PWR_FLAG` en `+12V` y `GND` cuando existan los conectores (`+3.3V` lo dará el regulador).
+### Decisiones
+- **Buck: LM5164** (6–100 V, 1 A, síncrono, SO-PowerPAD-8). Elegido por simplicidad. Por debajo de ~6 V deja de regular (arranque del motor): la lógica se reinicia y los canales quedan apagados hasta que el ESP32 arranque (seguro). Alternativa descartada por ahora: TPS54360B (4,5–60 V, 3,5 A, necesita diodo externo). **No usar LMR36015** (VQFN-HR 2×3 mm, difícil de ensamblar).
+- **Polaridad inversa de la lógica: diodo Schottky en serie** (≥2 A, ≥60 V; 100 V si se quiere aguantar pulsos negativos fuertes). Orden: **fusible → diodo → TVS**, para que el TVS no cortocircuite una batería invertida y, si el TVS falla en corto, se funda el fusible de la lógica y no el master.
+- **Los BTS no necesitan diodo en su Vbb**: tienen protección de polaridad inversa propia (ReverSave, −16 V 2 min) con RIN = 4.7k y RIS = 1k.
+- La elección del buck **no afecta la corriente de los BTS** (el buck solo alimenta la lógica; los BTS toman su Vbb directo del terminal).
+- **Terminal de +12 V: orificio en la PCB para tornillo con tuerca** (cable con terminal de ojo). Zona de cobre grande alrededor, orificio metalizado conectado al plano Vbb con múltiples vías; sin máscara en el área de contacto; arandela plana y de presión. Consideraciones: esfuerzo mecánico sobre la PCB (apoyo/separador o tuerca captiva SMT), capacidad de corriente del cobre (¿cobre de 2 oz?), y **falta definir el terminal de GND** (o tornillo al chasis).
+- **Fusible master del cliente, antes de todos los BTS: va EN LA PLACA** (portafusible de potencia entre el terminal de +12 V y el plano Vbb). **Valor y tipo por preguntar al cliente.** Corriente máxima total esperada en el peor caso: **40–50 A**; el fusible debería quedar por encima (con derating ~75 %) y la placa debe soportar esa corriente continua.
+- **Terminal de GND: también con tornillo.** Como los BTS son de lado alto, las cargas retornan por el chasis, no por la placa: este terminal solo lleva la corriente de la lógica y de los pines GND de los BTS (poca). Confirmar con el cliente que ninguna carga retorna por la placa.
+- **Cobre para 40–50 A (estimación IPC-2221, conservadora):** ancho de pista de una sola capa para 50 A con ΔT = 20–30 K: **cobre externo 1 oz ≈ 34–44 mm; 2 oz ≈ 17–22 mm**; capas internas (0,5–1 oz) → impracticable. Conclusión: el bus de +12 V debe ir en **capas externas con cobre pesado (2 oz o más; verificar con el fabricante)**, con zonas anchas y cortas, en ambas caras unidas con muchas vías. El plano interno de Vbb solo apoya, no basta. Ejemplo: 2 oz, 30 mm × 60 mm → ~0,5 mΩ → a 50 A: ~1,2 W y ~25 mV de caída.
+- Terminal de +12 V para ~50 A: **mínimo M6** (cable ~10 mm² / 8 AWG, a confirmar con el cliente). La pared del orificio metalizado (~0,5 mm²) sola no basta: la corriente debe entrar por cobre grande en la cara del terminal de ojo, con muchas vías; alternativa: espárrago o terminal de potencia soldable, o barra de cobre soldada a la placa.
+- LDO 5→3.3 V candidato: AP2112K-3.3 (600 mA, SOT-25; pieza Extended en JLCPCB). Diodo hacia el devkit: Schottky de 1 A.
+- TVS de 12 V (tipo ~24–26 V de standoff; el SM8S36A es de 24 V): por verificar en datasheet; su clamp debe quedar bajo el máximo del LM5164 (100 V).
+
+### Bloque de alimentación dibujado en el esquemático (zona x≈400–660 mm, **sin conectar** al resto)
+Bloque **cableado con cables reales** entre componentes (las tres tierras locales se unen por la etiqueta `GND_PWR`). Puntos de conexión (el usuario los une con etiquetas del mismo nombre): **`VBB`** → Vbb de los BTS; **`GND_PWR`** → GND; **`VIN_ESP32`** → pin VIN del devkit (`A1` pin 15); **`V3V3_OUT`** → +3.3V; `V5` (5 V) opcional. Hay `PWR_FLAG` en `VIN_D`, `V5` y `GND_PWR`.
+
+| Ref | Valor | Huella | Función |
+|---|---|---|---|
+| J1 | borne +12V M6 | MountingHole_6.4mm_M6_Pad | Entrada +12 V (red `VIN_BORNE`) |
+| F1 | Fusible master | *(por definir)* | Entre `VIN_BORNE` y `VBB`. Portafusible en la placa; valor por preguntar al cliente |
+| F2 | 2 A (lámina SMD) | Fuse_1206_3216Metric | Fusible de la rama de lógica (`VBB` → `VIN_F`). Huella provisional |
+| D4 | Schottky ≥2 A ≥60 V (SS36) | D_SMB | Polaridad inversa (`VIN_F` → `VIN_D`) |
+| D5 | TVS unidireccional ~24–26 V (SMBJ) | D_SMB | Sobre `VIN_D` a GND (símbolo `D_Zener`) |
+| C7, C8 | 2.2 µF 100 V X7R | C_1210 | Entrada del LM5164 |
+| C9 | 47 µF 50 V | CP_Elec_8x10 | Bulk de entrada |
+| U6 | LM5164DDA | HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm_ThermalVias | Buck 12→5 V. PGOOD sin usar (marca de no conexión) |
+| R13 / R14 | 301 k / 95.3 k | 0805 | Divisor de realimentación (`V5` → `FB` → GND) → 4,99 V |
+| R15 | 31.6 k | 0805 | RRON → Fsw ≈ 396 kHz |
+| R16, C12, C13 | 390 k, 1 nF, 82 pF C0G | 0805 | Red de rizado Tipo 3 (`SW` – `RAC` – `V5`, `RAC` – `FB`) |
+| R17 / R18 | 1 M / 270 k | 0805 | EN/UVLO (arranca ~7,1 V, apaga ~6,6 V) |
+| L1 | 22 µH, Isat ≥ 1,8 A | L_6.3x6.3_H3 (provisional) | Inductor |
+| C10 | 2.2 nF 50 V X7R | 0805 | Bootstrap (`BST`–`SW`) |
+| C11 | 22 µF 16 V X7R | C_1206 | Salida 5 V |
+| D6 | Schottky 1 A (SS14) | D_SMA | `V5` → `VIN_ESP32` (anti-retroalimentación USB) |
+| U7 | AP2112K-3.3 | SOT-23-5 | LDO 5 → 3.3 V (`V5` → `V3V3_OUT`) |
+| C14, C15 | 1 µF | 0805 | Entrada y salida del LDO |
+| J2 | borne GND M5 | MountingHole_5.3mm_M5_Pad | Red `GND_PWR` |
+| #FLG10–12 | PWR_FLAG | — | En `VIN_D`, `V5`, `GND_PWR` |
+
+Notas: el TVS de **Vbb** (plano de potencia, después del fusible master) **no está colocado**; pendiente de decisión con el cliente. Huellas provisionales a confirmar: F2, L1, D4/D5/D6, J1/J2 (MountingHole con pad).
+
+### Térmica del BTS (datasheet)
+- IL(NOM) = **40 A** (TA = 85 °C), RDS(on) máx. **2 mΩ** a 150 °C, umbral de cortocircuito ICL(0) = 150 A. RthJC = 0,5 K/W; **RthJA = 20 K/W** en placa JEDEC 2s2p y **70 K/W** con cobre mínimo.
+- El **tab (pin 4) es Vbb**: conviene soldarlo a una región grande de cobre de +12 V (ambas capas externas + vías térmicas al plano interno Vbb). Disipación aprox.: 10 A → 0,2 W; 20 A → 0,8 W; 40 A → 3,2 W (con 2 mΩ).
+- Los pines de salida (OUT, 5–7) y las pistas de carga también deben ser anchas.
 
 ---
 
@@ -183,12 +232,17 @@ IGN 12V ─ fusible ─ protección polaridad ─ TVS ─ buck 12→5V ─┬─
 
 - **LM339: 0–70 °C.** Hermano LM2901 (variante V/NCV2901) llega a −40/+125 °C con el mismo pinout. Se decidió mantener LM339.
 - **74HC132D (Nexperia):** −40/+125 °C, SOIC-14, 2–6 V. Existe versión AEC-Q100 Grado 1.
-- **BTS50010-1TAD:** PG-TO263-7-10, 1,0 mΩ, dkILIS típico 52100, Rsense recomendada 1 kΩ, entrada compatible 3.3 V…Vs, Vs operativo 8–18 V (extendido 3.2–28 V). Está en LCSC (C2150443).
+- **BTS50010-1TAD** (datasheet Rev. 1.2, leído del PDF): PG-TO263-7-10, 1,0 mΩ; está en LCSC (C2150443).
+  - Alimentación: **Vs operativo 8–18 V**, máximo absoluto **28 V**; **load dump 45 V** en prueba con RI = 2 Ω, **RIS = 1 kΩ y RIN = 4.7 kΩ** (justo los valores de `R9`, `R4` y `R5`); polaridad inversa **−16 V durante 2 min** con protección propia *ReverSave* (el MOSFET se enciende solo). Recomienda RIN = 4.7 kΩ y RIS = 1 kΩ.
+  - Entrada `IN`: **VIN(H) ≥ 2,2 V**, VIN(L) ≤ 0,8 V, histéresis 200 mV; corriente de entrada en alto hasta **80 µA**; máximo absoluto de `IN` = **Vs** (con `MANUAL` a 5 V no hay problema) y ±5 mA.
+  - Sensado: dkILIS 44500 / **52100** / 59100; en falla `IS` entrega **3,5–8 mA** (típ. 6 mA) → con `R9` = 1k hasta unos 6 V en la entrada del comparador (verificar tolerancia del LM339). IIS máx. abs. 10 mA.
+  - **El BTS tiene su propio latch de sobrecarga**: tras apagarse por sobrecorriente o temperatura, solo se reinicia poniendo `IN` en bajo más de tIN(RESETDELAY). `Q2` bajando `IN` también lo rearma.
+  - Margen de `IN` alto en el peor caso: ~3,3 V − Vf(BAT54C) − (80 µA + cargas) × 4.7k ≈ 2,4 V → solo ~0,2 V sobre el mínimo de 2,2 V. Vigilar (diodo de bajo Vf).
 - **MMBT2222A:** en SOT-23 el orden de pines (B=1, E=2, C=3) difiere del PN2222A TO-92. El símbolo en KiCad ya está cambiado.
 - **BAT54C:** el Vf varía mucho entre fabricantes (0,5–1 V a 100 mA). Afecta el nivel de `IN`.
 - **LEDs verdes:** esmeralda InGaN (Vf 2,6–3,1 V) no sirve con 3.3 V; usar verde estándar (~2,1 V).
 - **JLCPCB:** algunas fichas muestran AEC-Q200 por pieza; no se confirmó filtro AEC-Q. **PCBWay:** consigue piezas por MPN del BOM. Ninguno confirmado para trazabilidad automotriz formal (no es requisito).
-- Nivel de `IN`: con 3.3 V y los diodos, `IN` ≈ 2,9 V. Con `MANUAL` a 5 V, ≈ 4,5 V (verificar máximo absoluto de `IN`).
+- Nivel de `IN`: con 3.3 V y los diodos, `IN` ≈ 2,9 V sin carga (≈ 2,4 V en el peor caso con 80 µA de entrada). Con `MANUAL` a 5 V, ≈ 4,5 V: dentro del máximo absoluto (Vs).
 
 ---
 
@@ -201,8 +255,8 @@ IGN 12V ─ fusible ─ protección polaridad ─ TVS ─ buck 12→5V ─┬─
 - Circuito viejo (con 74HC74) eliminado.
 
 ### Pendiente — esquemático
-- [ ] **Conectar `A1` y `U4`** según la sección 6 (SDA/SCL, pull-ups, `RESET` a 3.3V, direcciones, desacople `C` de 100 nF para `U4`, alimentación del devkit por `VIN`, no conectar `3V3`).
-- [ ] Definir la **línea de falla analógica**: resistencia por canal, cuántos canales por línea (D34/D35).
+- [ ] **Conectar `A1`, `U4` y `U5`** según la sección 6 (SDA/SCL, pull-ups, `RESET` a 3.3V, direcciones 0x20/0x21, desacoples de 100 nF, alimentación del devkit por `VIN`, no conectar `3V3`).
+- [ ] Asignar qué canal va a qué salida/entrada (tabla canal → salida y canal → entrada de falla) siguiendo el reparto de la sección 6.
 - [ ] Pasar etiquetas globales/basadas en referencias a **locales con nombres funcionales** (`IN`, `IS`, `CMP`, `TRIP`, `LATCH`).
 - [ ] Conectores/pines reales para `MANUAL`, `ESP32 OUT`, `OUT` y la entrada de 12 V.
 - [ ] **Amarrar entradas sin usar** de `U2` (pines 9, 10, 12, 13) y de comparadores no usados, hasta replicar.
@@ -215,8 +269,7 @@ IGN 12V ─ fusible ─ protección polaridad ─ TVS ─ buck 12→5V ─┬─
 ### Pendiente — diseño
 - [ ] **Regulador** (sección 7): seleccionar buck, LDO, TVS, protección de polaridad, fusible; dibujar.
 - [ ] Verificar el umbral con el BTS real y fijar `R1` por grupo.
-- [ ] Definir resistencias de la falla analógica (sección 6).
-- [ ] Comprobar contra el datasheet del BTS: umbral de `IN` alto (~2,9 V con 3.3 V) y máximo absoluto de `IN` (si `MANUAL` es 5 V).
+- [ ] Revisar el margen de `IN` alto (peor caso ~2,4 V frente a 2,2 V mínimos): considerar diodo de menor Vf o menor valor de `R4`/`R5` (el datasheet recomienda 4.7k).
 - [ ] Verificar la huella `TO-263-7_TabPin4` contra el plano de PG-TO263-7-10.
 - [ ] Verificar el código de pedido y rango de temperatura del MCP23017 (`-E/SO`), y los alias de GPIO del devkit con la placa física.
 - [ ] Elegir MPN concretos de cada componente para el ensamblador (marca conocida para BAT54C, MMBT2222A; verde estándar ~2,1 V; electrolíticos SMD) y generar BOM + archivo de colocación.
@@ -224,6 +277,8 @@ IGN 12V ─ fusible ─ protección polaridad ─ TVS ─ buck 12→5V ─┬─
 ### Pendiente — PCB
 - [ ] El `.kicad_pcb` está **vacío** (no se ha iniciado). Cuando empiece: 4 capas, componentes a ambas caras, potencia y tierra en planos internos, **tierra de potencia vs lógica** (la medición de `IS` es sensible a caídas de tensión en GND), pistas gruesas para los BTS y disipación (TO-263), `R1` THT accesible para soldar a mano.
 - [ ] **Desacoples (`C2`, `C4`, el de `U4`) lo más cerca posible de los pines de alimentación** de cada integrado, con pistas cortas.
+- [ ] **Conectar el bloque de alimentación** al resto con etiquetas: `VBB` (a Vbb de los BTS), `GND_PWR` (a GND), `VIN_ESP32` (a `A1` pin 15), `V3V3_OUT` (a +3.3V). Definir huella del fusible master (`F1`) y decidir el TVS de Vbb.
+- [ ] **Bus de potencia de +12 V (40–50 A):** cobre pesado en capas externas, terminal M6 + portafusible cerca de los BTS, bus corto y ancho; definir conectores de salida por canal (corriente por canal por preguntar).
 - [ ] Posición de los zócalos del ESP32 (huella propia, 25,4 mm entre filas) y de `R1` (THT axial 10,16 mm) frente a los 24 canales.
 
 ---
@@ -268,6 +323,6 @@ Repositorio: https://github.com/jaimevillegas/fusilera-rolo (público).
 6. LM339 y 74HC132 se mantienen; MMBT2222A y BAT54C aceptados; LED verde estándar y rojo; electrolíticos.
 7. `R1` THT axial horizontal, no ensamblar, un divisor por canal.
 8. Esquemático anotado (renumerado) y desacoples cableados.
-9. Falla hacia el ESP32 por entradas analógicas (cambió el requisito inicial).
-10. ESP32 devkit de 30 pines en zócalo (símbolo/huella propios) + MCP23017: 1 MCP + 8 salidas directas; `RESET` del MCP a 3.3 V; dos entradas analógicas (D34, D35).
+9. Falla hacia el ESP32 (cambió el requisito inicial): se evaluó analógico con resistencias escalonadas y se **descartó** a favor de lectura digital con un segundo MCP23017.
+10. ESP32 devkit de 30 pines en zócalo (símbolo/huella propios) + MCP23017 #1 (salidas) + 8 salidas directas; `RESET` de los MCP a 3.3 V; MCP23017 #2 (`U5`, 0x21) para las entradas de falla.
 11. Regulador opción A (buck 12→5 V + LDO 3.3 V) — por diseñar.
