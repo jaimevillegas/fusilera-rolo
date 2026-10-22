@@ -6136,7 +6136,7 @@
 	)
 	(text "U5 = 2.o MCP23017: lee las 16 entradas de falla (TRIP de cada canal), direccion 0x21 (A0 a 3.3V).\nC6 = desacople 100nF de U5. Las 8 fallas restantes irian a VP, VN, D34, D35 y 4 pines directos libres."
 		(exclude_from_sim no)
-		(at 236.22 247.65 0)
+		(at 600.71 504.19 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8330,7 +8330,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 236.22 307.34 0)
+		(at 600.71 563.88 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8340,7 +8340,7 @@
 		(dnp no)
 		(uuid "746af19b-228f-4b1a-a7b2-cfbcb7cef47e")
 		(property "Reference" "C6"
-			(at 240.03 306.07 0)
+			(at 604.52 562.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8351,7 +8351,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 240.03 308.61 0)
+			(at 604.52 565.15 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8362,7 +8362,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 236.22 307.34 0)
+			(at 600.71 563.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8373,7 +8373,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 236.22 307.34 0)
+			(at 600.71 563.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8384,7 +8384,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 236.22 307.34 0)
+			(at 600.71 563.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8571,7 +8571,7 @@
 	)
 	(symbol
 		(lib_id "Interface_Expansion:MCP23017x-x-SO")
-		(at 236.22 275.59 0)
+		(at 600.71 532.13 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8581,7 +8581,7 @@
 		(dnp no)
 		(uuid "88ea9935-bd82-49c8-a25d-26ac37d33fa5")
 		(property "Reference" "U5"
-			(at 248.92 251.46 0)
+			(at 613.41 508 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8592,7 +8592,7 @@
 			)
 		)
 		(property "Value" "MCP23017-E/SO"
-			(at 248.92 254 0)
+			(at 613.41 510.54 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8603,7 +8603,7 @@
 			)
 		)
 		(property "Footprint" "Package_SO:SOIC-28W_7.5x17.9mm_P1.27mm"
-			(at 236.22 275.59 0)
+			(at 600.71 532.13 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8614,7 +8614,7 @@
 			)
 		)
 		(property "Datasheet" "https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-Data-Sheet-DS20001952.pdf"
-			(at 236.22 275.59 0)
+			(at 600.71 532.13 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8625,7 +8625,7 @@
 			)
 		)
 		(property "Description" "16-bit I/O expander, I2C, interrupts, w pull-ups, GPA7/GPB7 output only (https://microchip.my.site.com/s/article/GPA7---GPB7-Cannot-Be-Used-as-Inputs-In-MCP23017),  SOIC-28"
-			(at 236.22 275.59 0)
+			(at 600.71 532.13 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8730,7 +8730,7 @@
 	)
 	(symbol
 		(lib_id "fusilera:ESP32_DevKit_30pin")
-		(at 306.07 210.82 0)
+		(at 670.56 467.36 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8740,7 +8740,7 @@
 		(dnp no)
 		(uuid "94730805-37c4-4729-a14b-8ecea8ed873c")
 		(property "Reference" "A1"
-			(at 306.07 187.96 0)
+			(at 670.56 444.5 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8750,7 +8750,7 @@
 			)
 		)
 		(property "Value" "ESP32 DevKit V1 30 pines"
-			(at 306.07 233.68 0)
+			(at 670.56 490.22 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8760,7 +8760,7 @@
 			)
 		)
 		(property "Footprint" "fusilera:ESP32_DevKit_30pin_Socket"
-			(at 306.07 210.82 0)
+			(at 670.56 467.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8771,7 +8771,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 306.07 210.82 0)
+			(at 670.56 467.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8782,7 +8782,7 @@
 			)
 		)
 		(property "Description" "ESP32 DevKit V1 (30 pines) en zocalos 2x15. Pines 1-15 columna izquierda (arriba a abajo), 16-30 columna derecha (arriba a abajo), USB abajo"
-			(at 306.07 210.82 0)
+			(at 670.56 467.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9533,7 +9533,7 @@
 	)
 	(symbol
 		(lib_id "Interface_Expansion:MCP23017x-x-SO")
-		(at 236.22 210.82 0)
+		(at 600.71 467.36 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9543,7 +9543,7 @@
 		(dnp no)
 		(uuid "f5593fd6-f233-4ad6-899d-a90ddd8b32b9")
 		(property "Reference" "U4"
-			(at 248.92 187.96 0)
+			(at 613.41 444.5 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9554,7 +9554,7 @@
 			)
 		)
 		(property "Value" "MCP23017-E/SO"
-			(at 248.92 190.5 0)
+			(at 613.41 447.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9565,7 +9565,7 @@
 			)
 		)
 		(property "Footprint" "Package_SO:SOIC-28W_7.5x17.9mm_P1.27mm"
-			(at 236.22 210.82 0)
+			(at 600.71 467.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9576,7 +9576,7 @@
 			)
 		)
 		(property "Datasheet" "https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-Data-Sheet-DS20001952.pdf"
-			(at 236.22 210.82 0)
+			(at 600.71 467.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9587,7 +9587,7 @@
 			)
 		)
 		(property "Description" "16-bit I/O expander, I2C, interrupts, w pull-ups, GPA7/GPB7 output only (https://microchip.my.site.com/s/article/GPA7---GPB7-Cannot-Be-Used-as-Inputs-In-MCP23017),  SOIC-28"
-			(at 236.22 210.82 0)
+			(at 600.71 467.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
