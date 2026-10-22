@@ -186,9 +186,11 @@ Terminal de tornillo +12V (IGN) ─┬─► [fusible master: ubicación por def
 - **Los BTS no necesitan diodo en su Vbb**: tienen protección de polaridad inversa propia (ReverSave, −16 V 2 min) con RIN = 4.7k y RIS = 1k.
 - La elección del buck **no afecta la corriente de los BTS** (el buck solo alimenta la lógica; los BTS toman su Vbb directo del terminal).
 - **Terminal de +12 V: orificio en la PCB para tornillo con tuerca** (cable con terminal de ojo). Zona de cobre grande alrededor, orificio metalizado conectado al plano Vbb con múltiples vías; sin máscara en el área de contacto; arandela plana y de presión. Consideraciones: esfuerzo mecánico sobre la PCB (apoyo/separador o tuerca captiva SMT), capacidad de corriente del cobre (¿cobre de 2 oz?), y **falta definir el terminal de GND** (o tornillo al chasis).
-- **Fusible master del cliente, antes de todos los BTS: va EN LA PLACA** (portafusible de potencia entre el terminal de +12 V y el plano Vbb). **Valor y tipo por preguntar al cliente.** Corriente máxima total esperada en el peor caso: **40–50 A**; el fusible debería quedar por encima (con derating ~75 %) y la placa debe soportar esa corriente continua.
+- **Fusible master del cliente, antes de todos los BTS: va EN LA PLACA** (portafusible de potencia entre el terminal de +12 V y el plano Vbb). **Valor y tipo por preguntar al cliente.** Corriente máxima real según el cliente: **25–30 A durante menos de 5 s** (dos vidrios a la vez); el resto de las salidas consume poco. Falta confirmar la corriente **continua** máxima. El fusible debe tolerar 30 A durante 5 s repetidos (revisar su curva tiempo-corriente; con derating ~75 % apunta a ≥ 40 A).
 - **Terminal de GND: también con tornillo.** Como los BTS son de lado alto, las cargas retornan por el chasis, no por la placa: este terminal solo lleva la corriente de la lógica y de los pines GND de los BTS (poca). Confirmar con el cliente que ninguna carga retorna por la placa.
-- **Cobre para 40–50 A (estimación IPC-2221, conservadora):** ancho de pista de una sola capa para 50 A con ΔT = 20–30 K: **cobre externo 1 oz ≈ 34–44 mm; 2 oz ≈ 17–22 mm**; capas internas (0,5–1 oz) → impracticable. Conclusión: el bus de +12 V debe ir en **capas externas con cobre pesado (2 oz o más; verificar con el fabricante)**, con zonas anchas y cortas, en ambas caras unidas con muchas vías. El plano interno de Vbb solo apoya, no basta. Ejemplo: 2 oz, 30 mm × 60 mm → ~0,5 mΩ → a 50 A: ~1,2 W y ~25 mV de caída.
+- **Cobre para 25–30 A durante < 5 s (cálculo de calentamiento transitorio, conservador: sin disipar calor):** el aumento de temperatura depende de la sección, no del largo. Para ΔT = 30–40 K se necesita una sección de ~0,8–0,9 mm²: **cobre externo 1 oz → ~22–25 mm de ancho; 2 oz → ~11–13 mm** (ΔT = 60 K: 18 mm / 9 mm). Ejemplo: barra de 2 oz de 15 × 60 mm → ~1 mΩ, 30 A → 0,9 W y ~29 mV de caída, ~20 K en 5 s. En régimen continuo (IPC-2221, ΔT = 20 K): 10 A → 4,7 mm (1 oz) / 2,4 mm (2 oz); 15 A → 8,3 / 4,1 mm; 20 A → 12,3 / 6,1 mm.
+- **Vías en el camino de potencia (cuello de botella):** ~0,9 A por vía de 0,3 mm en 5 s (ΔT = 40 K); ~1,8 A por vía de 0,6 mm. Para 30 A: ≥ 34 vías de 0,3 mm o ≥ 17 de 0,6 mm en cada cambio de capa. Mejor mantener la corriente alta en **una sola capa externa**.
+- El peor caso del BTS (≈ 12–15 A por vidrio): 0,45 W, ΔT ≈ 9 K con RthJA = 20 K/W (≈ 32 K con 70 K/W). Esto reduce la exigencia de cobre grueso: 1 oz exterior puede bastar si el bus se hace con zonas anchas en ambas caras; 2 oz sigue siendo una mejora.
 - Terminal de +12 V para ~50 A: **mínimo M6** (cable ~10 mm² / 8 AWG, a confirmar con el cliente). La pared del orificio metalizado (~0,5 mm²) sola no basta: la corriente debe entrar por cobre grande en la cara del terminal de ojo, con muchas vías; alternativa: espárrago o terminal de potencia soldable, o barra de cobre soldada a la placa.
 - LDO 5→3.3 V candidato: AP2112K-3.3 (600 mA, SOT-25; pieza Extended en JLCPCB). Diodo hacia el devkit: Schottky de 1 A.
 - TVS de 12 V (tipo ~24–26 V de standoff; el SM8S36A es de 24 V): por verificar en datasheet; su clamp debe quedar bajo el máximo del LM5164 (100 V).
@@ -205,7 +207,7 @@ Bloque **cableado con cables reales** entre componentes (las tres tierras locale
 | D5 | TVS unidireccional ~24–26 V (SMBJ) | D_SMB | Sobre `VIN_D` a GND (símbolo `D_Zener`) |
 | C7, C8 | 2.2 µF 100 V X7R | C_1210 | Entrada del LM5164 |
 | C9 | 47 µF 50 V | CP_Elec_8x10 | Bulk de entrada |
-| U6 | LM5164DDA | HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm_ThermalVias | Buck 12→5 V. PGOOD sin usar (marca de no conexión) |
+| U6 | LM5164DDA | HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm | Buck 12→5 V. (Huella sin vías térmicas; las vías del pad expuesto las pone el usuario, 0,6/0,3 mm) PGOOD sin usar (marca de no conexión) |
 | R13 / R14 | 301 k / 95.3 k | 0805 | Divisor de realimentación (`V5` → `FB` → GND) → 4,99 V |
 | R15 | 31.6 k | 0805 | RRON → Fsw ≈ 396 kHz |
 | R16, C12, C13 | 390 k, 1 nF, 82 pF C0G | 0805 | Red de rizado Tipo 3 (`SW` – `RAC` – `V5`, `RAC` – `FB`) |
@@ -274,11 +276,18 @@ Notas: el TVS de **Vbb** (plano de potencia, después del fusible master) **no e
 - [ ] Verificar el código de pedido y rango de temperatura del MCP23017 (`-E/SO`), y los alias de GPIO del devkit con la placa física.
 - [ ] Elegir MPN concretos de cada componente para el ensamblador (marca conocida para BAT54C, MMBT2222A; verde estándar ~2,1 V; electrolíticos SMD) y generar BOM + archivo de colocación.
 
+### Configuración del PCB ya aplicada (22 oct 2026)
+- **Stackup** (en `.kicad_pcb`): 4 capas, 1,6 mm; cobre exterior **2 oz** (70 µm) en F.Cu y B.Cu; interior 0,5 oz (17,5 µm) en In1.Cu e In2.Cu (estándar JLCPCB). Espesores de dieléctrico aproximados: los reales los fija el fabricante al cotizar. Acabado superficial por decidir.
+- **Reglas** (en `.kicad_pro`): pista y espaciado mínimos 0,2 mm (JLCPCB exige > 8 mil con 2 oz); vía 0,6/0,3 mm; anillo mínimo 0,15 mm; borde 0,3 mm.
+- **Clases de red:** `Default` 0,25 mm; `Potencia_12V` 2,5 mm (10 A continuos a 2 oz ≈ 2,4 mm), espaciado 0,3 mm, vías 0,8/0,4 (redes `/VBB`, `+12V`); `Entrada_Logica` 1,0 mm (rama de lógica < 0,5 A: `Net-(D4-*`, o sea `VIN_F` y `VIN_D`); `Conmutacion` 0,5 mm (`Net-(U6-SW)`); `Potencia_5V_3V3` 0,5 mm (`Net-(D6-A)`, `/VIN_ESP32`, `/V3V3_OUT`, `+3.3V`, `+5V`). Los picos de 25–30 A / < 5 s van en **zonas de cobre** de 11–13 mm de ancho (2 oz), no en pistas. Los patrones dependen de los nombres de red actuales; revisarlos al unir las etiquetas con el circuito.
+- Corriente continua máxima confirmada por el cliente: **10 A**.
+- Estado a 22 oct (6.ª revisión): DRC **solo** marca el contorno que falta (0 errores de taladro, 0 `hole_to_hole`, 0 problemas de paridad). `CIN`: `C7` a 4,6 mm de pista del VIN de `U6` (cumple), `C8` a 8,3 mm (secundario); `SW`–`L1` 6,2 mm; vías de GND (32) bien separadas; uniones de GND de 1 mm en `C7`, `C8`, `C11`, `C9`, `U6` pin 1. Pendiente: contorno (`Edge.Cuts`) y redibujar el plano; reforzar vías del TVS; zonas de +12 V; BTS y resto del circuito sin rutear (48 conexiones); unir el bloque al esquemático (VBB, GND_PWR, VIN_ESP32, V3V3_OUT).
+
 ### Pendiente — PCB
 - [ ] El `.kicad_pcb` está **vacío** (no se ha iniciado). Cuando empiece: 4 capas, componentes a ambas caras, potencia y tierra en planos internos, **tierra de potencia vs lógica** (la medición de `IS` es sensible a caídas de tensión en GND), pistas gruesas para los BTS y disipación (TO-263), `R1` THT accesible para soldar a mano.
 - [ ] **Desacoples (`C2`, `C4`, el de `U4`) lo más cerca posible de los pines de alimentación** de cada integrado, con pistas cortas.
 - [ ] **Conectar el bloque de alimentación** al resto con etiquetas: `VBB` (a Vbb de los BTS), `GND_PWR` (a GND), `VIN_ESP32` (a `A1` pin 15), `V3V3_OUT` (a +3.3V). Definir huella del fusible master (`F1`) y decidir el TVS de Vbb.
-- [ ] **Bus de potencia de +12 V (40–50 A):** cobre pesado en capas externas, terminal M6 + portafusible cerca de los BTS, bus corto y ancho; definir conectores de salida por canal (corriente por canal por preguntar).
+- [ ] **Bus de potencia de +12 V (25–30 A en picos de < 5 s):** zonas anchas en capas externas (ver cálculo en sección 7), vías abundantes en cada cambio de capa, terminal M6 (M5 posible, por verificar según el terminal) + portafusible cerca de los BTS; definir conectores de salida por canal (corriente por canal por preguntar).
 - [ ] Posición de los zócalos del ESP32 (huella propia, 25,4 mm entre filas) y de `R1` (THT axial 10,16 mm) frente a los 24 canales.
 
 ---
