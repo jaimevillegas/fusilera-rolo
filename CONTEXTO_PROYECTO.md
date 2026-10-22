@@ -70,7 +70,7 @@ Pendiente: pasar a **etiquetas locales con nombres funcionales** (`IN`, `IS`, `C
 
 | Ref | Valor | Huella | Nota |
 |---|---|---|---|
-| A1 | ESP32 DevKit V1 30 pines | `fusilera:ESP32_DevKit_30pin_Socket` | Símbolo y huella propios (en `libs/`). Zócalos hembra 2×15, 25,4 mm entre filas |
+| A1 | ESP32 DevKit V1 30 pines | `fusilera:ESP32_DevKit_30pin_Socket` | Símbolo y huella propios (en `libs/`). Zócalos hembra 2×15, 25,4 mm entre filas. La huella lleva los nombres de los pines en la serigrafía (F.SilkS), entre las dos filas |
 | U1 | LM339D | SOIC-14_3.9x8.7mm_P1.27mm | 4 comparadores |
 | U2 | 74HC132D | SOIC-14_3.9x8.7mm_P1.27mm | Latch (símbolo `74xx:74LS132`, mismo pinout; KiCad no trae 74HC132) |
 | U3 | BTS50010-1TAD | TO-263-7_TabPin4 | **Verificar la huella contra el plano del datasheet (PG-TO263-7-10)** |
@@ -255,6 +255,22 @@ Notas: el TVS de **Vbb** (plano de potencia, después del fusible master) **no e
 - Todas las huellas asignadas. Esquemático **anotado** (referencias renumeradas).
 - `U4` (MCP23017) y `A1` (ESP32 devkit) colocados, **sin cablear**. Biblioteca propia `fusilera` creada (`libs/`).
 - Circuito viejo (con 74HC74) eliminado.
+
+### Requisito de canales actualizado (22 oct)
+- **28 canales de salida:** **19 controlados** (ESP32/MCP + entrada MANUAL) y **9 siempre en alto** (sin control: el lado `ESP32 OUT` de su OR va a +3,3 V mediante la misma resistencia; no usan GPIO ni MCP). **Los 28 tienen línea de falla** hacia el micro. **Sin tercer MCP**: solo ESP32 + `U4` + `U5`.
+- **Cuenta de E/S:** 19 salidas de control + 28 entradas de falla = **47 líneas** de 49 disponibles (`U4` 16 + `U5` 16 + 12 pines directos seguros + 4 solo-entrada VP/VN/D34/D35 + `D14`). GPA7/GPB7 de cada MCP son solo salida (cada MCP da 14 entradas).
+- **Asignación propuesta:** salidas de control: `U4` GPA0–7 y GPB0–7 (canales 1–16), `U5` GPA7 (canal 17), `U5` GPB7 (canal 18) y `D13` (canal 19). Fallas: `U5` GPA0–6 y GPB0–6 (14, canales 1–14), VP, VN, D34, D35 (canales 15–18) y 10 pines directos `D16, D17, D18, D19, D23, D25, D26, D27, D32, D33` (canales 19–28). **Reserva: `D4` y `D14`.** Sin pines de interrupción: las fallas se leen por sondeo.
+- **Materiales para 28 canales:** 28 BTS, 14 × 74HC132 (2 latches por chip, sin compuertas libres), 7 × LM339 (4 comparadores por chip, sin unidades libres), 2 MCP23017, ≈ 20 componentes por canal (≈ 560), 28 resistencias de umbral THT a mano.
+- Nomenclatura de redes propuesta (sufijo por canal): `OUTk`, `FALLAk`, `ESP32_OUTk`/`MANUALk` (solo canales 1–19).
+
+### Esquemático jerárquico: la "celda" de 4 canales (22 oct)
+- **Estructura:** hoja principal (`fusilera 24 canales.kicad_sch`) + hoja `celda4.kicad_sch` instanciada como **`Celda1`** y **`Celda2`** (2 instancias, para probar la replicación del layout). 28 canales = **7 celdas idénticas**. Cada celda: 4 BTS, 1 LM339, 2 × 74HC132 y todos los componentes de los 4 canales (≈ 87 refs).
+- **Referencias:** `Celda1` conserva las refs existentes (R1…R54, U1…U11…); `Celda2` usa las mismas **+100** (R101…, U101…). Los pull-ups que faltaban en los canales 3 y 4 son `R53` y `R54` (`R153`, `R154` en la `Celda2`).
+- **Pines de cada celda** (etiquetas jerárquicas = pines de hoja): entradas `ESP32_OUT1–4`, `MANUAL1–4`; salidas `OUT1–4`, `FALLA1–4`. Las redes internas son locales de cada hoja (p. ej. `/Celda1/FALLA2`), por lo que ya no se unen entre canales ni entre celdas. GND, +3,3 V y +12 V son globales (símbolos de alimentación).
+- **Pendiente en la hoja principal:** conectar los pines de cada celda: `ESP32_OUTk` a una salida de `U4`/`U5`/pin directo del ESP32 (canales controlados) o a +3,3 V (canales siempre en alto); `MANUALk` a su conector; `OUTk` a su conector de salida; `FALLAk` a una entrada de `U5`/ESP32. Para las 7 celdas (28 canales): copiar la hoja de celda y reanotar con *Mantener*.
+- **Verificado por netlist:** conexiones de `Celda1` idénticas a las del esquemático plano original (52 redes sin cambio, 4 redes compartidas separadas por canal) y `Celda2` idéntica a `Celda1`.
+- **PCB:** los 25 footprints existentes de la celda se re-vincularon a `Celda1` (se conserva su colocación). Con **F8** entrarán el resto de la `Celda1` y toda la `Celda2`. Después, replicar el layout con la herramienta de multicanal de KiCad (*Generar áreas de reglas de colocación* y *Repetir layout*); en KiCad 10 puede fallar con "no compatible component found" si los pines de hoja están conectados a redes externas distintas: desconectarlos mientras se replica.
+- Umbrales `R1`, `R29`, `R49`, `R51` (y `R101`, `R129`, `R149`, `R151`) con valor `umbral`, DNP y huella THT.
 
 ### Pendiente — esquemático
 - [ ] **Conectar `A1`, `U4` y `U5`** según la sección 6 (SDA/SCL, pull-ups, `RESET` a 3.3V, direcciones 0x20/0x21, desacoples de 100 nF, alimentación del devkit por `VIN`, no conectar `3V3`).
