@@ -272,6 +272,19 @@ Notas: el TVS de **Vbb** (plano de potencia, después del fusible master) **no e
 - **PCB:** los 25 footprints existentes de la celda se re-vincularon a `Celda1` (se conserva su colocación). Con **F8** entrarán el resto de la `Celda1` y toda la `Celda2`. Después, replicar el layout con la herramienta de multicanal de KiCad (*Generar áreas de reglas de colocación* y *Repetir layout*); en KiCad 10 puede fallar con "no compatible component found" si los pines de hoja están conectados a redes externas distintas: desconectarlos mientras se replica.
 - Umbrales `R1`, `R29`, `R49`, `R51` (y `R101`, `R129`, `R149`, `R151`) con valor `umbral`, DNP y huella THT.
 
+### Estado del PCB a 22 oct (16:08, tras importar las dos celdas)
+- 202 footprints (0 problemas de paridad), 371 segmentos, 43 vías, todo en F.Cu salvo 15 segmentos en B.Cu; **sin contorno** (`Edge.Cuts`).
+- **Celda1:** 87 footprints en 78 × 66 mm; los 4 BTS (`U3`, `U8`, `U10`, `U11`) en columna (x ≈ 165, y 106–161) con 17–20 mm entre ellos y el tab (+12 V) hacia la izquierda, pines de salida hacia la derecha. Quedan 34 conexiones propias por rutear (salidas `OUT1–4`, `FALLA1–4`, parte de `IS`/`IN`).
+- **Plano de GND** (`PLANO_GND_In1`, contorno provisional x 12–161, y 8,5–88): **no cubre la Celda1** (y 102–168) y debe redibujarse con el contorno real. Además las redes `GND` (celdas) y `/GND_PWR` (plano y bloque de poder) son distintas hasta unir `GND_PWR` con `GND` en el esquemático (74 conexiones de GND pendientes).
+- Pendiente de rellenar zonas (tecla B): 18 avisos de espaciado entre el plano y pads PTH (`J1`, umbrales `R101`, `R129`, `R149`, `R151`) por relleno desactualizado.
+- Pendiente: plano de +3,3 V (propuesto en In2), zonas de +12 V y de salida de los BTS, 260 conexiones por rutear en total.
+
+### Estado del PCB a 23 oct (10:00)
+- 202 footprints, 451 segmentos (400 F.Cu, 44 In2.Cu, 7 B.Cu), 62 vías, 0 problemas de paridad; **sin contorno** (`Edge.Cuts`). Las señales `IN`/`IS` ya empezaron a pasar por In2.
+- **Celda1** en x 88–148, y 98–162 con los BTS (`U3`, `U8`, `U10`, `U11`) en x ≈ 148 (y 102, 121, 140, 157). **Celda2** colocada aparte en x 123–170, y 26–74 (sin rutear). Quedan ~32 conexiones propias de la Celda1 (sobre todo `OUT1–4` y `FALLA1–4`).
+- **Plano de GND** (`PLANO_GND_In1`, red `/GND_PWR`) redibujado en x 21,8–170,3, y 92,4–172: cubre la Celda1 pero **ya no cubre el bloque de poder** (y 37–61): 34 vías de GND del bloque quedan colgando y el plano sale como cobre aislado, porque las celdas usan la red `GND` y no `/GND_PWR` (unirlas en el esquemático).
+- DRC: 1 error de espaciado (pad 4 de `U3`, +12 V, contra un tramo suelto de 2 mm de la red `Net-(U1A--)`), 263 conexiones sin rutear (127 de GND/+3,3 V/+12 V, 104 de la Celda2).
+
 ### Pendiente — esquemático
 - [ ] **Conectar `A1`, `U4` y `U5`** según la sección 6 (SDA/SCL, pull-ups, `RESET` a 3.3V, direcciones 0x20/0x21, desacoples de 100 nF, alimentación del devkit por `VIN`, no conectar `3V3`).
 - [ ] Asignar qué canal va a qué salida/entrada (tabla canal → salida y canal → entrada de falla) siguiendo el reparto de la sección 6.
