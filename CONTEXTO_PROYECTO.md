@@ -298,6 +298,18 @@ Notas: el TVS de **Vbb** (plano de potencia, después del fusible master) **no e
 - **DRC:** 0 errores de espaciado, 0 problemas de paridad; 27 conexiones sin rutear (15 de +12 V de los tabs, 10 de GND, 1 de +3,3 V y 1 de `/VBB`) y 32 vías de GND del bloque de poder sin plano.
 
 
+### Celda3 añadida al esquemático (23 oct)
+- Tercera instancia de `celda4.kicad_sch` en el esquemático raíz (hoja `Celda3`, página 4, bloque en (88,9; 292,1) bajo `Celda2`, 16 pines sin cablear). Referencias = las de la Celda1 + 200 (`R204`, `U201`, `C205`…). Netlist verificado: las 241 redes previas no cambian salvo `GND`, `+3.3V` y `+12V` que suman los pines nuevos; 68 redes nuevas `/Celda3/…`; 289 componentes sin referencias repetidas. Pendiente: **F8** en el PCB y copiar la disposición de la Celda1.
+
+### Celda dorada simétrica (23 oct, en curso)
+- **Decisión:** cada celda lleva 2 BTS a cada lado (canales 1 y 2 a la derecha, 3 y 4 a la izquierda) con la lógica compartida en el centro; se copiará trasladada, sin giros. **Cara superior:** 3 celdas (12 canales); **cara inferior:** 2 celdas de 4 con un BTS sin montar (7 controlados) más los 9 canales siempre activos (por definir celdas); la celda de la cara inferior será la misma volteada (F.Cu ↔ B.Cu, las capas internas no se intercambian) y en otra zona de XY que las de arriba.
+- **Aplicado a la Celda1:** los canales 3 y 4 (30 footprints) se giraron 180° alrededor de (122,5; 132,05); las pistas que cruzaban hacia la lógica se borraron (quedan `IS3`, `IS4`, `FALLA3`, `FALLA4` por rutear). La Celda2 (en x 25–96) se apartó 120 mm en Y para no solapar. `U9` y su grupo (`C18`–`C20`, `R31`, `R32`) quedan en el centro-abajo, por reubicar.
+
+### Ruteo de los grupos movidos y arquitectura (23 oct, tarde)
+- **Decisión de arquitectura (usuario):** controlador (ESP32 + MCP) al centro con celdas arriba y abajo en la misma cara; 28 canales en 8 celdas de 4 (4 por cara; 4 BTS sin montar) o la distribución 12 arriba / 7 + 9 abajo. **Riesgo señalado:** el bus hacia el controlador (≈ 47 líneas) no tiene capa libre en 4 capas (In1 = GND, In2 = +3,3 V y señales internas, B.Cu = celdas de la otra cara); se recomendó un MCP23017 por celda (bus I²C) o pasar a 6 capas. Pendiente de confirmar.
+- **Ruteo hecho por script (enrutador de rejilla propio, F.Cu + In2, pista 0,25 mm, espaciado ≥ 0,25 mm, columnas de tabs libres en F.Cu):** `IS3`, `IS4`, `FALLA3`, `FALLA4`, los 4 umbrales `U1A+`…`U1D+` y los pull-ups `R53`/`R54`, más 4 vías de plano (`C18`/`C19` a GND, `R31`/`R32` a +3,3 V). DRC a 0,25 mm sin errores en la celda; quedan solo los 7 de +12 V de los tabs y 2 de +3,3 V (pista del LED `D2`, isla de In2). Se probó Freerouting 2.5.0 (descargado al directorio temporal) pero dejaba pistas a 0,2 mm de los tabs y sin conectar 3–6 redes: se descartó.
+- **Islas de +3,3 V en In2:** las pistas de señal de In2 encierran islas del plano (≈ 695, 134 y 19 mm²) con vías de +3,3 V; esas vías no llegan al plano principal y dependen de pistas de F.Cu. Conviene unirlas o mover señales de In2.
+
 ### Pendiente — esquemático
 - [ ] **Conectar `A1`, `U4` y `U5`** según la sección 6 (SDA/SCL, pull-ups, `RESET` a 3.3V, direcciones 0x20/0x21, desacoples de 100 nF, alimentación del devkit por `VIN`, no conectar `3V3`).
 - [ ] Asignar qué canal va a qué salida/entrada (tabla canal → salida y canal → entrada de falla) siguiendo el reparto de la sección 6.
