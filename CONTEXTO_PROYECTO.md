@@ -292,6 +292,12 @@ Notas: el TVS de **Vbb** (plano de potencia, después del fusible master) **no e
 - **Mejoras antes de replicar:** `C4`/`C20` están en el lado GND de `U2`/`U9` (a 9,7 mm del pin VCC); `C2` a 10 mm de VCC de `U1`; BTS con paso desigual (18,7 / 19,0 / 16,8 mm); canal 3 con transistores en distinta posición; marca del pin 1 de los BTS sobre la vía de GND; sin vías térmicas en el tab (por verificar con JLCPCB); pin 4 (Vbb) de cada BTS sin conexión externa.
 - **Pendiente de arquitectura:** salida de las 12 señales de la celda (`ESP32_OUT`, `MANUAL`, `FALLA`) hacia el controlador, tira de +12 V (hueco de 6–8 mm entre tabs, ancho útil ≈ 12 mm), zonas `OUT` y camino de +12 V desde `J1` hasta las celdas.
 
+### Celda2 replicada (23 oct)
+- La Celda2 se copió de la Celda1 por script (no con la herramienta multicanal de KiCad): 87 footprints con la misma orientación y desplazados (0; −73,4 mm), más 539 pistas y 97 vías con la red equivalente. Verificado: geometría idéntica a la entera, 0 problemas de paridad, 0 errores nuevos de DRC (a 0,25 mm) y todas las redes locales de la Celda2 rutadas.
+- **Disposición actual (tras mover el usuario las celdas, 23 oct 13:51):** Celda1 en x 107,7–179, y 98–166; Celda2 girada 180° a su izquierda (x 24,6–96, y 98–166). Los planos de GND (In1) y +3,3 V (In2) se ampliaron a x 21,8–181,6, y 92,4–251,2 y cubren ambas celdas; sin contorno (`Edge.Cuts`).
+- **DRC:** 0 errores de espaciado, 0 problemas de paridad; 27 conexiones sin rutear (15 de +12 V de los tabs, 10 de GND, 1 de +3,3 V y 1 de `/VBB`) y 32 vías de GND del bloque de poder sin plano.
+
+
 ### Pendiente — esquemático
 - [ ] **Conectar `A1`, `U4` y `U5`** según la sección 6 (SDA/SCL, pull-ups, `RESET` a 3.3V, direcciones 0x20/0x21, desacoples de 100 nF, alimentación del devkit por `VIN`, no conectar `3V3`).
 - [ ] Asignar qué canal va a qué salida/entrada (tabla canal → salida y canal → entrada de falla) siguiendo el reparto de la sección 6.
