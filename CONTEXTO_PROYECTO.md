@@ -282,7 +282,9 @@ Notas: el TVS de **Vbb** (plano de potencia, después del fusible master) **no e
 ### Estado del PCB a 23 oct (10:00)
 - 202 footprints, 451 segmentos (400 F.Cu, 44 In2.Cu, 7 B.Cu), 62 vías, 0 problemas de paridad; **sin contorno** (`Edge.Cuts`). Las señales `IN`/`IS` ya empezaron a pasar por In2.
 - **Celda1** en x 88–148, y 98–162 con los BTS (`U3`, `U8`, `U10`, `U11`) en x ≈ 148 (y 102, 121, 140, 157). **Celda2** colocada aparte en x 123–170, y 26–74 (sin rutear). Quedan ~32 conexiones propias de la Celda1 (sobre todo `OUT1–4` y `FALLA1–4`).
-- **Plano de GND** (`PLANO_GND_In1`, red `/GND_PWR`) redibujado en x 21,8–170,3, y 92,4–172: cubre la Celda1 pero **ya no cubre el bloque de poder** (y 37–61): 34 vías de GND del bloque quedan colgando y el plano sale como cobre aislado, porque las celdas usan la red `GND` y no `/GND_PWR` (unirlas en el esquemático).
+- **Plano de GND** (`PLANO_GND_In1`, red `/GND_PWR`) redibujado en x 21,8–170,3, y 92,4–172: cubre la Celda1 pero **ya no cubre el bloque de poder** (y 37–61): 32 vías de GND del bloque quedan colgando hasta ampliar el plano o añadir otra zona de GND ahí.
+- **GND unificado (23 oct):** en el esquemático raíz las 3 etiquetas `GND_PWR` se sustituyeron por símbolos `power:GND` (`#PWR091–093`), así que `/GND_PWR` desapareció y `GND` suma 100 pines; el PCB se actualizó (red del plano = `GND`, 74 conexiones de GND por rutear). Netlist verificado: solo cambia esa fusión.
+- **Plano de +3,3 V** (`PLANO_3V3_In2`, In2.Cu, red `+3.3V`, mismo contorno que el de GND: x 21,8–170,3, y 92,4–172, espaciado 0,3 mm, alivio térmico solo en PTH): cubre 23 de los 46 pads de +3,3 V (los de la Celda1); faltan las vías de los pads SMD, y la Celda2 y el bloque de poder quedan fuera.
 - DRC: 1 error de espaciado (pad 4 de `U3`, +12 V, contra un tramo suelto de 2 mm de la red `Net-(U1A--)`), 263 conexiones sin rutear (127 de GND/+3,3 V/+12 V, 104 de la Celda2).
 
 ### Pendiente — esquemático
