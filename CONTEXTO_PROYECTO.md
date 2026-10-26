@@ -310,6 +310,11 @@ Notas: el TVS de **Vbb** (plano de potencia, después del fusible master) **no e
 - **Ruteo hecho por script (enrutador de rejilla propio, F.Cu + In2, pista 0,25 mm, espaciado ≥ 0,25 mm, columnas de tabs libres en F.Cu):** `IS3`, `IS4`, `FALLA3`, `FALLA4`, los 4 umbrales `U1A+`…`U1D+` y los pull-ups `R53`/`R54`, más 4 vías de plano (`C18`/`C19` a GND, `R31`/`R32` a +3,3 V). DRC a 0,25 mm sin errores en la celda; quedan solo los 7 de +12 V de los tabs y 2 de +3,3 V (pista del LED `D2`, isla de In2). Se probó Freerouting 2.5.0 (descargado al directorio temporal) pero dejaba pistas a 0,2 mm de los tabs y sin conectar 3–6 redes: se descartó.
 - **Islas de +3,3 V en In2:** las pistas de señal de In2 encierran islas del plano (≈ 695, 134 y 19 mm²) con vías de +3,3 V; esas vías no llegan al plano principal y dependen de pistas de F.Cu. Conviene unirlas o mover señales de In2.
 
+### Cara frontal: 3 celdas + controlador (23 oct)
+- La celda dorada (Celda1, x 66–179, y 97,5–141) se copió por script a la **Celda2** (desplazada +113,5 mm en Y: y 211–254,7) y a la **Celda3** (+161,2 mm: y 258,7–302,4): 87 footprints, 549 pistas y 101 vías cada una, geometría idéntica a la entera, 0 problemas de paridad, 0 solapes de courtyard y 0 errores de espaciado nuevos (a 0,25 mm). Se borró el cobre antiguo de la Celda2 (la copia girada).
+- **Disposición vertical (x común, centro lógico en x 107–140):** Celda1 (y 97–141) → controlador (`A1` ESP32 y 145–184, `U4` MCP y 188–207) → Celda2 → Celda3. La Celda3 no se pudo poner encima de la Celda1: chocaba con el bloque de poder (x ≤ 66). Los planos de GND (In1) y +3,3 V (In2) se extendieron a y = 310.
+- Las líneas de la lógica hacia el controlador las rutea el usuario. Falta el `U5` (segundo MCP) aparcado fuera de la placa (x −25) y las celdas de la cara inferior.
+
 ### Pendiente — esquemático
 - [ ] **Conectar `A1`, `U4` y `U5`** según la sección 6 (SDA/SCL, pull-ups, `RESET` a 3.3V, direcciones 0x20/0x21, desacoples de 100 nF, alimentación del devkit por `VIN`, no conectar `3V3`).
 - [ ] Asignar qué canal va a qué salida/entrada (tabla canal → salida y canal → entrada de falla) siguiendo el reparto de la sección 6.
