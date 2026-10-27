@@ -7619,6 +7619,14 @@
 					(reference "#PWR235")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR535")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR635")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR335")
 					(unit 1)
@@ -7752,6 +7760,14 @@
 					(reference "U201")
 					(unit 3)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U501")
+					(unit 3)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U601")
+					(unit 3)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U301")
 					(unit 3)
@@ -7843,6 +7859,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR226")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR526")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR626")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -7942,6 +7966,14 @@
 					(reference "C205")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C505")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C605")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "C305")
 					(unit 1)
@@ -8033,6 +8065,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR202")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR502")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR602")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -8135,6 +8175,14 @@
 					(reference "D201")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D501")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D601")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "D301")
 					(unit 1)
@@ -8230,6 +8278,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "C221")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C521")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C621")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -8365,6 +8421,14 @@
 					(reference "U201")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U501")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U601")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U301")
 					(unit 1)
@@ -8460,6 +8524,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "D213")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D513")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D613")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -8588,6 +8660,14 @@
 					(reference "Q206")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "Q506")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "Q606")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "Q306")
 					(unit 1)
@@ -8680,6 +8760,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR250")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR550")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR650")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -8779,6 +8867,14 @@
 					(reference "R242")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R542")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R642")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R342")
 					(unit 1)
@@ -8876,6 +8972,14 @@
 					(reference "R210")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R510")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R610")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R310")
 					(unit 1)
@@ -8969,6 +9073,14 @@
 					(reference "#PWR223")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR523")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR623")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR323")
 					(unit 1)
@@ -9060,6 +9172,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR253")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR553")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR653")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -9162,6 +9282,14 @@
 					(reference "Q203")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "Q503")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "Q603")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "Q303")
 					(unit 1)
@@ -9255,6 +9383,14 @@
 					(reference "#PWR214")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR514")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR614")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR314")
 					(unit 1)
@@ -9346,6 +9482,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR212")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR512")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR612")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -9445,6 +9589,14 @@
 					(reference "R245")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R545")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R645")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R345")
 					(unit 1)
@@ -9542,6 +9694,14 @@
 					(reference "R244")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R544")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R644")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R344")
 					(unit 1)
@@ -9633,6 +9793,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR217")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR517")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR617")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -9728,6 +9896,14 @@
 					(reference "#PWR232")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR532")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR632")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR332")
 					(unit 1)
@@ -9819,6 +9995,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR205")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR505")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR605")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -9918,6 +10102,14 @@
 					(reference "R232")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R532")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R632")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R332")
 					(unit 1)
@@ -10009,6 +10201,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR203")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR503")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR603")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -10104,6 +10304,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R235")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R535")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R635")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -10203,6 +10411,14 @@
 					(reference "R204")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R504")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R604")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R304")
 					(unit 1)
@@ -10295,6 +10511,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR201")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR501")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR601")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -10390,6 +10614,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R220")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R520")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R620")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -10516,6 +10748,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "Q205")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "Q505")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "Q605")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -10651,6 +10891,14 @@
 					(reference "U209")
 					(unit 3)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U509")
+					(unit 3)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U609")
+					(unit 3)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U309")
 					(unit 3)
@@ -10758,6 +11006,14 @@
 					(reference "D209")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D509")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D609")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "D309")
 					(unit 1)
@@ -10858,6 +11114,14 @@
 					(reference "D215")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D515")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D615")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "D315")
 					(unit 1)
@@ -10949,6 +11213,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR255")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR555")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR655")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -11044,6 +11316,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R254")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R554")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R654")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -11143,6 +11423,14 @@
 					(reference "C220")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C520")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C620")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "C320")
 					(unit 1)
@@ -11240,6 +11528,14 @@
 					(reference "R239")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R539")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R639")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R339")
 					(unit 1)
@@ -11333,6 +11629,14 @@
 					(reference "#PWR219")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR519")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR619")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR319")
 					(unit 1)
@@ -11424,6 +11728,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR210")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR510")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR610")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -11524,6 +11836,14 @@
 					(reference "C219")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C519")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C619")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "C319")
 					(unit 1)
@@ -11619,6 +11939,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R206")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R506")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R606")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -11719,6 +12047,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "Q208")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "Q508")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "Q608")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -11829,6 +12165,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "U208")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U508")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U608")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -11964,6 +12308,14 @@
 					(reference "U202")
 					(unit 5)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U502")
+					(unit 5)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U602")
+					(unit 5)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U302")
 					(unit 5)
@@ -12057,6 +12409,14 @@
 					(reference "#PWR215")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR515")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR615")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR315")
 					(unit 1)
@@ -12148,6 +12508,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR237")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR537")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR637")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -12247,6 +12615,14 @@
 					(reference "R221")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R521")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R621")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R321")
 					(unit 1)
@@ -12338,6 +12714,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR225")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR525")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR625")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -12433,6 +12817,14 @@
 					(reference "#PWR218")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR518")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR618")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR318")
 					(unit 1)
@@ -12526,6 +12918,14 @@
 					(reference "#PWR204")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR504")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR604")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR304")
 					(unit 1)
@@ -12617,6 +13017,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR216")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR516")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR616")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -12713,6 +13121,14 @@
 					(reference "#PWR221")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR521")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR621")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR321")
 					(unit 1)
@@ -12804,6 +13220,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR246")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR546")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR646")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -12913,6 +13337,14 @@
 					(reference "D203")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D503")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D603")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "D303")
 					(unit 1)
@@ -13008,6 +13440,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R224")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R524")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R624")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -13107,6 +13547,14 @@
 					(reference "C218")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C518")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C618")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "C318")
 					(unit 1)
@@ -13201,6 +13649,14 @@
 					(reference "#PWR228")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR528")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR628")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR328")
 					(unit 1)
@@ -13293,6 +13749,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR211")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR511")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR611")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -13393,6 +13857,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "D214")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D514")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D614")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -13528,6 +14000,14 @@
 					(reference "U202")
 					(unit 3)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U502")
+					(unit 3)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U602")
+					(unit 3)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U302")
 					(unit 3)
@@ -13625,6 +14105,14 @@
 					(reference "R237")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R537")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R637")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R337")
 					(unit 1)
@@ -13716,6 +14204,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR230")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR530")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR630")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -13813,6 +14309,14 @@
 					(reference "R203")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R503")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R603")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R303")
 					(unit 1)
@@ -13905,6 +14409,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR222")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR522")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR622")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -14001,6 +14513,14 @@
 					(reference "#PWR249")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR549")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR649")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR349")
 					(unit 1)
@@ -14094,6 +14614,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R238")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R538")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R638")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -14201,6 +14729,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "D210")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D510")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D610")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -14336,6 +14872,14 @@
 					(reference "U201")
 					(unit 2)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U501")
+					(unit 2)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U601")
+					(unit 2)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U301")
 					(unit 2)
@@ -14431,6 +14975,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "C202")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C502")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C602")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -14529,6 +15081,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "C203")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C503")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C603")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -14631,6 +15191,14 @@
 					(reference "D208")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D508")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D608")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "D308")
 					(unit 1)
@@ -14727,6 +15295,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R202")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R502")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R602")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -14862,6 +15438,14 @@
 					(reference "U202")
 					(unit 4)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U502")
+					(unit 4)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U602")
+					(unit 4)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U302")
 					(unit 4)
@@ -14954,6 +15538,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR247")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR547")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR647")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -15053,6 +15645,14 @@
 					(reference "R241")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R541")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R641")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R341")
 					(unit 1)
@@ -15145,6 +15745,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR213")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR513")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR613")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -15280,6 +15888,14 @@
 					(reference "U209")
 					(unit 5)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U509")
+					(unit 5)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U609")
+					(unit 5)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U309")
 					(unit 5)
@@ -15375,6 +15991,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R207")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R507")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R607")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -15510,6 +16134,14 @@
 					(reference "U202")
 					(unit 2)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U502")
+					(unit 2)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U602")
+					(unit 2)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U302")
 					(unit 2)
@@ -15607,6 +16239,14 @@
 					(reference "R243")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R543")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R643")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R343")
 					(unit 1)
@@ -15698,6 +16338,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR243")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR543")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR643")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -15795,6 +16443,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R222")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R522")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R622")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -15930,6 +16586,14 @@
 					(reference "U201")
 					(unit 5)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U501")
+					(unit 5)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U601")
+					(unit 5)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U301")
 					(unit 5)
@@ -16063,6 +16727,14 @@
 					(reference "U209")
 					(unit 2)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U509")
+					(unit 2)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U609")
+					(unit 2)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U309")
 					(unit 2)
@@ -16154,6 +16826,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR231")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR531")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR631")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -16254,6 +16934,14 @@
 					(reference "R252")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R552")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R652")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R352")
 					(unit 1)
@@ -16347,6 +17035,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R226")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R526")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R626")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -16482,6 +17178,14 @@
 					(reference "U209")
 					(unit 4)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U509")
+					(unit 4)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U609")
+					(unit 4)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U309")
 					(unit 4)
@@ -16573,6 +17277,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR207")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR507")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR607")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -16668,6 +17380,14 @@
 					(reference "#PWR233")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR533")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR633")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR333")
 					(unit 1)
@@ -16761,6 +17481,14 @@
 					(reference "#PWR208")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR508")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR608")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR308")
 					(unit 1)
@@ -16852,6 +17580,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR241")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR541")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR641")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -16951,6 +17687,14 @@
 					(reference "C204")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C504")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C604")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "C304")
 					(unit 1)
@@ -17046,6 +17790,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R223")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R523")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R623")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -17144,6 +17896,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R250")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R550")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R650")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -17272,6 +18032,14 @@
 					(reference "Q202")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "Q502")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "Q602")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "Q302")
 					(unit 1)
@@ -17365,6 +18133,14 @@
 					(reference "#PWR209")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR509")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR609")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR309")
 					(unit 1)
@@ -17456,6 +18232,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR236")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR536")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR636")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -17556,6 +18340,14 @@
 					(reference "R249")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R549")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R649")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R349")
 					(unit 1)
@@ -17649,6 +18441,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R227")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R527")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R627")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -17748,6 +18548,14 @@
 					(reference "R234")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R534")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R634")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R334")
 					(unit 1)
@@ -17845,6 +18653,14 @@
 					(reference "C216")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C516")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C616")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "C316")
 					(unit 1)
@@ -17938,6 +18754,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R236")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R536")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R636")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -18050,6 +18874,14 @@
 					(reference "U210")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U510")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U610")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U310")
 					(unit 1)
@@ -18147,6 +18979,14 @@
 					(reference "R231")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R531")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R631")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R331")
 					(unit 1)
@@ -18240,6 +19080,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R205")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R505")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R605")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -18375,6 +19223,14 @@
 					(reference "U202")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U502")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U602")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U302")
 					(unit 1)
@@ -18470,6 +19326,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "D207")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D507")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D607")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -18569,6 +19433,14 @@
 					(reference "R246")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R546")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R646")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R346")
 					(unit 1)
@@ -18661,6 +19533,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR252")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR552")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR652")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -18763,6 +19643,14 @@
 					(reference "Q201")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "Q501")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "Q601")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "Q301")
 					(unit 1)
@@ -18860,6 +19748,14 @@
 					(reference "R248")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R548")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R648")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R348")
 					(unit 1)
@@ -18951,6 +19847,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR206")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR506")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR606")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -19048,6 +19952,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R208")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R508")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R608")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -19160,6 +20072,14 @@
 					(reference "U211")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U511")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U611")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U311")
 					(unit 1)
@@ -19260,6 +20180,14 @@
 					(reference "Q207")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "Q507")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "Q607")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "Q307")
 					(unit 1)
@@ -19352,6 +20280,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR248")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR548")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR648")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -19447,6 +20383,14 @@
 					(reference "#PWR244")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR544")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR644")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR344")
 					(unit 1)
@@ -19540,6 +20484,14 @@
 					(reference "#PWR239")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR539")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR639")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR339")
 					(unit 1)
@@ -19631,6 +20583,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR240")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR540")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR640")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -19730,6 +20690,14 @@
 					(reference "C201")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C501")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C601")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "C301")
 					(unit 1)
@@ -19825,6 +20793,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "D202")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D502")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D602")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -19924,6 +20900,14 @@
 					(reference "C217")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C517")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C617")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "C317")
 					(unit 1)
@@ -20017,6 +21001,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R211")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R511")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R611")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -20116,6 +21108,14 @@
 					(reference "R247")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R547")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R647")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R347")
 					(unit 1)
@@ -20207,6 +21207,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR224")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR524")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR624")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -20316,6 +21324,14 @@
 					(reference "D211")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D511")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D611")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "D311")
 					(unit 1)
@@ -20409,6 +21425,14 @@
 					(reference "#PWR220")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR520")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR620")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR320")
 					(unit 1)
@@ -20500,6 +21524,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR238")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR538")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR638")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -20599,6 +21631,14 @@
 					(reference "R233")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R533")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R633")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R333")
 					(unit 1)
@@ -20692,6 +21732,14 @@
 					(reference "#PWR234")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR534")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR634")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR334")
 					(unit 1)
@@ -20783,6 +21831,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR251")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR551")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR651")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -20882,6 +21938,14 @@
 					(reference "R228")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R528")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R628")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R328")
 					(unit 1)
@@ -20977,6 +22041,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R219")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R519")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R619")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -21089,6 +22161,14 @@
 					(reference "U203")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U503")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U603")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U303")
 					(unit 1)
@@ -21187,6 +22267,14 @@
 					(reference "R251")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R551")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R651")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R351")
 					(unit 1)
@@ -21282,6 +22370,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "D212")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "D512")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "D612")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -21382,6 +22478,14 @@
 					(reference "R201")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R501")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R601")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R301")
 					(unit 1)
@@ -21479,6 +22583,14 @@
 					(reference "R225")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R525")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R625")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R325")
 					(unit 1)
@@ -21574,6 +22686,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R209")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R509")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R609")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -21709,6 +22829,14 @@
 					(reference "U209")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U509")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U609")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U309")
 					(unit 1)
@@ -21835,6 +22963,14 @@
 					(reference "Q204")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "Q504")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "Q604")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "Q304")
 					(unit 1)
@@ -21926,6 +23062,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR242")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR542")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR642")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -22061,6 +23205,14 @@
 					(reference "U201")
 					(unit 4)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "U501")
+					(unit 4)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "U601")
+					(unit 4)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "U301")
 					(unit 4)
@@ -22152,6 +23304,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR229")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR529")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR629")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -22246,6 +23406,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR245")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR545")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR645")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -22346,6 +23514,14 @@
 					(reference "R229")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R529")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R629")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R329")
 					(unit 1)
@@ -22442,6 +23618,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R230")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R530")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R630")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -22541,6 +23725,14 @@
 					(reference "C222")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "C522")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "C622")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "C322")
 					(unit 1)
@@ -22636,6 +23828,14 @@
 					(reference "R253")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R553")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R653")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R353")
 					(unit 1)
@@ -22729,6 +23929,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "R240")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R540")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R640")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
@@ -22828,6 +24036,14 @@
 					(reference "R212")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "R512")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "R612")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "R312")
 					(unit 1)
@@ -22921,6 +24137,14 @@
 					(reference "#PWR254")
 					(unit 1)
 				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR554")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR654")
+					(unit 1)
+				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"
 					(reference "#PWR354")
 					(unit 1)
@@ -23012,6 +24236,14 @@
 			(project "fusilera 24 canales"
 				(path "/6451a64b-df92-4e59-b073-88385097038f/07726400-fc9b-47b7-b999-1b124ba93bf4"
 					(reference "#PWR227")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/5d3b7bb1-c7b8-418f-8a25-ac96a14703fb"
+					(reference "#PWR527")
+					(unit 1)
+				)
+				(path "/6451a64b-df92-4e59-b073-88385097038f/a911059c-1355-442f-8fcb-5da853ca4841"
+					(reference "#PWR627")
 					(unit 1)
 				)
 				(path "/6451a64b-df92-4e59-b073-88385097038f/67309aff-830e-40e2-97ce-3cd9dcc094a9"

@@ -12004,6 +12004,797 @@
 		)
 	)
 
+	(sheet
+		(at 88.9 444.5)
+		(size 63.5 30.48)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "5d3b7bb1-c7b8-418f-8a25-ac96a14703fb")
+		(property "Sheetname" "Celda6"
+			(at 88.9 443.8 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "celda4.kicad_sch"
+			(at 88.9 475.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "ESP32_OUT1" input
+			(at 88.9 449.58 180)
+			(uuid "ca3a20d8-f18c-4c88-88f9-fcb021ca8741")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ESP32_OUT2" input
+			(at 88.9 452.12 180)
+			(uuid "36d45064-e207-4fc8-a8b3-6fa6cabaabcc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ESP32_OUT3" input
+			(at 88.9 454.66 180)
+			(uuid "48addb94-4510-4cd6-b3b5-7fb169c48404")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ESP32_OUT4" input
+			(at 88.9 457.2 180)
+			(uuid "79cd6237-8b44-40ea-80b2-d1135beb6f46")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL1" input
+			(at 88.9 459.74 180)
+			(uuid "32a3011b-4a7d-47c2-8352-af88e47218bf")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL2" input
+			(at 88.9 462.28 180)
+			(uuid "f225f78d-af1b-49e4-b741-1075cbcda6b3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL3" input
+			(at 88.9 464.82 180)
+			(uuid "878fe7b9-01b3-4ec1-a780-5384529343f9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL4" input
+			(at 88.9 467.36 180)
+			(uuid "2c761e96-30be-4324-be67-76787a1cde28")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "FALLA1" output
+			(at 152.4 449.58 0)
+			(uuid "39966d83-36e1-44ce-b877-9680313662fd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FALLA2" output
+			(at 152.4 452.12 0)
+			(uuid "b64323fc-07b9-4c10-85f3-31317ca54b1b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FALLA3" output
+			(at 152.4 454.66 0)
+			(uuid "6917b1a5-2b2f-4907-a2cb-4177204ee061")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FALLA4" output
+			(at 152.4 457.2 0)
+			(uuid "8a362f4b-89b6-4ae9-ad82-9bdf36fc0b88")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT1" output
+			(at 152.4 459.74 0)
+			(uuid "ba2135b6-4a68-4039-bc1b-d893f59ba646")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT2" output
+			(at 152.4 462.28 0)
+			(uuid "0473badb-3b9f-4e07-9ff1-d2e2d15e6fb4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT3" output
+			(at 152.4 464.82 0)
+			(uuid "796185dd-9970-4c44-83b8-4453a75c0699")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT4" output
+			(at 152.4 467.36 0)
+			(uuid "5945e576-c761-4ae7-aad5-d46dbc7981f6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "fusilera 24 canales"
+				(path "/6451a64b-df92-4e59-b073-88385097038f"
+					(page "7")
+				)
+			)
+		)
+	)
+
+	(sheet
+		(at 88.9 495.3)
+		(size 63.5 30.48)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "a911059c-1355-442f-8fcb-5da853ca4841")
+		(property "Sheetname" "Celda7"
+			(at 88.9 494.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "celda4.kicad_sch"
+			(at 88.9 526.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "ESP32_OUT1" input
+			(at 88.9 500.38 180)
+			(uuid "05b4c5ce-3527-42d5-97a1-1b7e6609b536")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ESP32_OUT2" input
+			(at 88.9 502.92 180)
+			(uuid "1a1386d8-5559-4502-957d-bb463a6b3d73")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ESP32_OUT3" input
+			(at 88.9 505.46 180)
+			(uuid "e88acad4-a0f9-4158-91c9-e417f738f06d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ESP32_OUT4" input
+			(at 88.9 508 180)
+			(uuid "3d624ae1-c528-4569-8b84-f21334f1ade0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL1" input
+			(at 88.9 510.54 180)
+			(uuid "50f68390-5923-452f-b9e2-a6083ea49b22")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL2" input
+			(at 88.9 513.08 180)
+			(uuid "0c0a0822-9392-47a8-bb6f-da656ff2a9bb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL3" input
+			(at 88.9 515.62 180)
+			(uuid "7169525c-6417-4f10-9fbb-09c75ca35941")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL4" input
+			(at 88.9 518.16 180)
+			(uuid "53aa15ab-9921-4a9b-833e-4c1619c6a056")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "FALLA1" output
+			(at 152.4 500.38 0)
+			(uuid "23275bff-f0fc-468c-8b7c-9468c7605e0c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FALLA2" output
+			(at 152.4 502.92 0)
+			(uuid "93de8506-fd0f-4f99-85f1-93b289bdd06d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FALLA3" output
+			(at 152.4 505.46 0)
+			(uuid "a7c48d7c-6877-4b1c-8a9e-2aa8d85ac68f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FALLA4" output
+			(at 152.4 508 0)
+			(uuid "941e1a3b-e993-4feb-bfbc-39e5d880d5fe")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT1" output
+			(at 152.4 510.54 0)
+			(uuid "8a86b323-0e32-465d-b5fc-fad485b72d47")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT2" output
+			(at 152.4 513.08 0)
+			(uuid "552589cc-3a0f-40af-8437-ab31ad69f009")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT3" output
+			(at 152.4 515.62 0)
+			(uuid "cef82d24-f2ff-4c16-a47a-779de58bb515")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT4" output
+			(at 152.4 518.16 0)
+			(uuid "009663cd-25d6-42fa-a018-edd2e2d70ec9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "fusilera 24 canales"
+				(path "/6451a64b-df92-4e59-b073-88385097038f"
+					(page "8")
+				)
+			)
+		)
+	)
+
+	(wire
+		(pts
+			(xy 83.82 406.4) (xy 88.9 406.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9183caf6-8ddb-471e-bbf2-4af1091bd9cb")
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 83.82 406.4 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "cafcbaa8-f045-4727-ae72-cfa18557e000")
+		(property "Reference" "#PWR094"
+			(at 83.82 412.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 83.82 402.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 83.82 406.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 83.82 406.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 83.82 406.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f1b06701-a9df-40fd-88a7-edcc227ab6d3")
+		)
+		(instances
+			(project "fusilera 24 canales"
+				(path "/6451a64b-df92-4e59-b073-88385097038f"
+					(reference "#PWR094")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 83.82 449.58) (xy 88.9 449.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9aae5cee-91d2-4654-8e99-1e21a77ee71b")
+	)
+	(wire
+		(pts
+			(xy 83.82 452.12) (xy 88.9 452.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f323f3a5-89c0-46a7-9288-916e69b7686d")
+	)
+	(wire
+		(pts
+			(xy 83.82 454.66) (xy 88.9 454.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "60459b27-c908-40aa-b60d-dc48a5a7192d")
+	)
+	(wire
+		(pts
+			(xy 83.82 457.2) (xy 88.9 457.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "28124238-1041-4c17-a1de-ce85ca97766c")
+	)
+	(wire
+		(pts
+			(xy 83.82 449.58) (xy 83.82 457.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd883897-05b6-4425-b81e-1ed717022e55")
+	)
+	(junction
+		(at 83.82 449.58)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4cbdef59-142b-4a51-a336-23d3ca8d2df0")
+	)
+	(junction
+		(at 83.82 452.12)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e1069253-7d6e-49cc-a751-7b999981be20")
+	)
+	(junction
+		(at 83.82 454.66)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8bca99c1-c945-4fdc-b554-dfcf9bc91b31")
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 83.82 449.58 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "53c8709d-5d94-4eed-bf92-5379b22cf572")
+		(property "Reference" "#PWR095"
+			(at 83.82 455.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 83.82 445.77 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 83.82 449.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 83.82 449.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 83.82 449.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e93a4253-abdb-4898-a8d4-12aaa22235c7")
+		)
+		(instances
+			(project "fusilera 24 canales"
+				(path "/6451a64b-df92-4e59-b073-88385097038f"
+					(reference "#PWR095")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 83.82 500.38) (xy 88.9 500.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a669a8db-dcca-4d0e-86d4-dd2c53953f6a")
+	)
+	(wire
+		(pts
+			(xy 83.82 502.92) (xy 88.9 502.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dda53ca6-8afd-499e-9993-a8ab6de8efdd")
+	)
+	(wire
+		(pts
+			(xy 83.82 505.46) (xy 88.9 505.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "134ef6b1-5c8d-43cc-a285-5f2fdd86f7cd")
+	)
+	(wire
+		(pts
+			(xy 83.82 508) (xy 88.9 508)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91a4b92e-32ae-482f-9aa5-13cd07066683")
+	)
+	(wire
+		(pts
+			(xy 83.82 500.38) (xy 83.82 508)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4dcaae27-c69e-45a7-865d-ef223b499e79")
+	)
+	(junction
+		(at 83.82 500.38)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cd8e4f30-cb24-47de-b019-9b1b904cd94f")
+	)
+	(junction
+		(at 83.82 502.92)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4a5d5f8b-7fac-4489-a7a8-32052b90c837")
+	)
+	(junction
+		(at 83.82 505.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d93906ac-7340-409f-b7db-3ce305477734")
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 83.82 500.38 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7bc35624-185f-4dcf-ba48-b0577f47da98")
+		(property "Reference" "#PWR096"
+			(at 83.82 506.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 83.82 496.57 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 83.82 500.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 83.82 500.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 83.82 500.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ce03cbc4-c36f-4f84-acbb-5d2d63bd1afa")
+		)
+		(instances
+			(project "fusilera 24 canales"
+				(path "/6451a64b-df92-4e59-b073-88385097038f"
+					(reference "#PWR096")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")
