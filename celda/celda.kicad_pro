@@ -800,8 +800,8 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "fusilera 24 canales.kicad_sch",
-        "name": "Raíz",
+        "filename": "celda.kicad_sch",
+        "name": "celda",
         "uuid": "6451a64b-df92-4e59-b073-88385097038f"
       }
     ],
@@ -810,8 +810,8 @@
   },
   "sheets": [
     [
-      "35f30634-9555-4c6c-8249-92abe8fbee05",
-      "Raíz"
+      "6451a64b-df92-4e59-b073-88385097038f",
+      "celda"
     ],
     [
       "7ac4191c-7220-47a0-be32-4085e2ecb618",
