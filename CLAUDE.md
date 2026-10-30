@@ -17,13 +17,28 @@ Instrucciones para Claude Code en este repositorio. Para el contexto técnico co
 - Verificar datos técnicos (temperaturas, encapsulados, datasheets) con búsqueda antes de recomendar piezas. Marcar como "por verificar" lo que no se confirmó.
 - Reconocer y corregir abiertamente los errores propios.
 
+## Estructura del repositorio (rama `separate-boards`)
+
+Dos placas apiladas (cada una con componentes a ambas caras) que comparten una **celda dorada** como única fuente de verdad. Detalle en [docs/arquitectura.md](docs/arquitectura.md).
+
+- `celda/`: proyecto de la celda dorada (esquemático `celda_circuito.kicad_sch` + PCB). Es lo único que se diseña a mano; el resto se replica.
+- `placa-master/`: ESP32 + `U4` + celdas. `placa-slave/`: `U5` + celdas + bloque de poder.
+- `libs/`: símbolos y huellas compartidos (los proyectos apuntan a `${KIPRJMOD}/../libs/...`).
+- `herramientas/`: scripts (extraer y replicar celdas). `docs/`: arquitectura, pinout del conector y avisos pendientes.
+- `legacy/`: el monolito de una sola placa (solo referencia; sale cuando las dos placas estén listas). Está intacto en `main`, etiquetar como `doble-cara-v1`.
+- **Las celdas replicadas en `placa-master/` y `placa-slave/` no se editan a mano**: se regeneran con el script desde `celda/`.
+- Los nombres de archivo de las reglas de abajo se refieren al proyecto con el que se trabaje (p. ej. `celda/celda.kicad_sch`).
+
 ## Reglas para editar KiCad
 
-- **No modificar `fusilera 24 canales.kicad_sch` si el editor de KiCad lo tiene abierto** (el archivo `~fusilera 24 canales.kicad_sch.lck` lo indica): el usuario perdería cambios al guardar. Pedir que cierre el editor.
+- **No modificar un `.kicad_sch` o `.kicad_pcb` si el editor de KiCad lo tiene abierto** (el archivo `~<proyecto>.kicad_pro.lck` o `~<archivo>.lck` lo indica): el usuario perdería cambios al guardar. Pedir que cierre el editor.
+- Al crear huellas por script, **aparcarlas fuera del contorno** y moverlas después: al guardar, KiCad propaga la red de un pad nuevo a las pistas y vías que queden debajo.
+- No usar `rm -rf` con comodines: crear directorios de salida nuevos.
 - Antes de escribir el archivo real, preparar los cambios en una copia en el scratchpad y validarlos con `kicad-cli`.
 - Tras cada cambio, verificar:
-  - `kicad-cli sch erc --severity-all -o erc.txt "fusilera 24 canales.kicad_sch"`
-  - `kicad-cli sch export netlist --format kicadsexpr -o n.net "fusilera 24 canales.kicad_sch"`
+  - `kicad-cli sch erc --severity-all -o erc.txt <proyecto>.kicad_sch`
+  - `kicad-cli sch export netlist --format kicadsexpr -o n.net <proyecto>.kicad_sch`
+  - Para el PCB: `kicad-cli pcb drc --schematic-parity --severity-all --format report -o drc.txt <proyecto>.kicad_pcb`
   - Comparar el netlist antes y después para confirmar que la conectividad es idéntica.
 - Al colocar componentes nuevos: ponerlos **sin cablear** en una zona libre; el usuario los conecta y luego se revisa su imagen o el netlist guardado.
 - Los cambios de símbolo deben conservar la geometría de pines (los cables no se mueven) y respetar el orden de pines de la huella (p. ej. SOT-23: B=1, E=2, C=3).

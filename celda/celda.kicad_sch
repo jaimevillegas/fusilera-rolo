@@ -1,0 +1,540 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "35f30634-9555-4c6c-8249-92abe8fbee05")
+	(paper "A3")
+	(lib_symbols)
+	(sheet
+		(at 88.9 38.1)
+		(size 63.5 30.48)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "7ac4191c-7220-47a0-be32-4085e2ecb618")
+		(property "Sheetname" "Celda"
+			(at 88.9 37.4 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "celda_circuito.kicad_sch"
+			(at 88.9 69.28 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "ESP32_OUT1" input
+			(at 88.9 43.18 180)
+			(uuid "4766ac08-dd01-4099-a9fd-a832c4e04fd3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ESP32_OUT2" input
+			(at 88.9 45.72 180)
+			(uuid "296bd8f5-89af-427d-96b3-51f67accf9b1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ESP32_OUT3" input
+			(at 88.9 48.26 180)
+			(uuid "1fee3b6d-3f0a-4c45-9df4-6cd49873d9c9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ESP32_OUT4" input
+			(at 88.9 50.8 180)
+			(uuid "54eb3ff0-4bf5-4d5b-9f0e-01ed806aaab1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL1" input
+			(at 88.9 53.34 180)
+			(uuid "0840e516-a98b-42e3-871e-9506eb1beed5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL2" input
+			(at 88.9 55.88 180)
+			(uuid "5d03e0d9-eeb4-4702-b807-59c56b8be3ad")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL3" input
+			(at 88.9 58.42 180)
+			(uuid "c554b208-767a-4f10-babb-1909cee187fa")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MANUAL4" input
+			(at 88.9 60.96 180)
+			(uuid "0277d374-f639-4e64-a9d4-b81e4af9c329")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "FALLA1" output
+			(at 152.4 43.18 0)
+			(uuid "38344924-fe39-4b24-b02c-4d04e78041f5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FALLA2" output
+			(at 152.4 45.72 0)
+			(uuid "7c5ccfb9-d1f6-4444-a0dd-1b783e55a592")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FALLA3" output
+			(at 152.4 48.26 0)
+			(uuid "ffdca914-95a3-4ac6-95bd-e689923dee32")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FALLA4" output
+			(at 152.4 50.8 0)
+			(uuid "7e8c50fc-1648-40b2-85e9-531a6336c44c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT1" output
+			(at 152.4 53.34 0)
+			(uuid "094727b6-1e57-4a3c-9319-4b807a02c10e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT2" output
+			(at 152.4 55.88 0)
+			(uuid "c0c0e3c4-a804-45f7-8fa5-40d08e47b6c4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT3" output
+			(at 152.4 58.42 0)
+			(uuid "d8757438-5bd4-48c7-abf8-60b57c090928")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT4" output
+			(at 152.4 60.96 0)
+			(uuid "3729d05e-4a07-4ddc-96ce-ae1786be41ca")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "celda"
+				(path "/35f30634-9555-4c6c-8249-92abe8fbee05"
+					(page "2")
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 86.36 43.18) (xy 88.9 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "92864216-a641-4a62-abcc-c23cdb65932c")
+	)
+	(label "ESP32_OUT1"
+		(at 86.36 43.18 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e0580251-4ba4-4143-8afb-2162f2783e12")
+	)
+	(wire
+		(pts
+			(xy 86.36 45.72) (xy 88.9 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d5be922-fcd8-4666-9c6c-e88fed0e5861")
+	)
+	(label "ESP32_OUT2"
+		(at 86.36 45.72 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ccd0fa6f-e18a-4989-819e-8faea94886d8")
+	)
+	(wire
+		(pts
+			(xy 86.36 48.26) (xy 88.9 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a74c84ea-7e8c-4c9a-b791-73449b8bcdb9")
+	)
+	(label "ESP32_OUT3"
+		(at 86.36 48.26 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ed228e60-706f-4da1-870d-e0156d155bd8")
+	)
+	(wire
+		(pts
+			(xy 86.36 50.8) (xy 88.9 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea085cc7-b085-4d07-9328-af382b4b0b64")
+	)
+	(label "ESP32_OUT4"
+		(at 86.36 50.8 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "72cefa8f-0612-4581-a834-5a935c3d148d")
+	)
+	(wire
+		(pts
+			(xy 86.36 53.34) (xy 88.9 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dc68fc3d-a330-461a-8178-b1df55e82de3")
+	)
+	(label "MANUAL1"
+		(at 86.36 53.34 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c77620f0-3abe-4993-9139-7981c3933fb8")
+	)
+	(wire
+		(pts
+			(xy 86.36 55.88) (xy 88.9 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e99028b-630d-4d88-8c27-25745db3fa32")
+	)
+	(label "MANUAL2"
+		(at 86.36 55.88 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0bc423d3-1343-43c8-9036-0e744e9ddd96")
+	)
+	(wire
+		(pts
+			(xy 86.36 58.42) (xy 88.9 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50e4f757-b16e-49ca-9715-b4239d4f0726")
+	)
+	(label "MANUAL3"
+		(at 86.36 58.42 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "158f6ec3-dbc1-4ad5-9477-632a9bd80eb3")
+	)
+	(wire
+		(pts
+			(xy 86.36 60.96) (xy 88.9 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "05a53f57-3987-4b24-8676-12f349747cc2")
+	)
+	(label "MANUAL4"
+		(at 86.36 60.96 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a78887b1-d498-4251-8f91-183771f7aa54")
+	)
+	(wire
+		(pts
+			(xy 154.94 43.18) (xy 152.4 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "200e2771-8f68-4091-a26b-3262d854f688")
+	)
+	(label "FALLA1"
+		(at 154.94 43.18 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8b75c2a9-02ae-45bf-8076-47adf2803901")
+	)
+	(wire
+		(pts
+			(xy 154.94 45.72) (xy 152.4 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "137358b7-d850-4aae-a08a-6c31152eb89d")
+	)
+	(label "FALLA2"
+		(at 154.94 45.72 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d9a756d1-5beb-4261-9884-a9d70831c3cb")
+	)
+	(wire
+		(pts
+			(xy 154.94 48.26) (xy 152.4 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6519308a-eb6d-455d-adc2-476d5690fa7c")
+	)
+	(label "FALLA3"
+		(at 154.94 48.26 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f265f348-5848-42d5-8658-d48058d60d81")
+	)
+	(wire
+		(pts
+			(xy 154.94 50.8) (xy 152.4 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "624e8735-894c-4f10-8ca1-b97e687f66c7")
+	)
+	(label "FALLA4"
+		(at 154.94 50.8 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6e659a75-4a99-49c3-af2b-ad676dba3ad6")
+	)
+	(wire
+		(pts
+			(xy 154.94 53.34) (xy 152.4 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "187030cc-d432-4993-a4e2-be0929884985")
+	)
+	(label "OUT1"
+		(at 154.94 53.34 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ba5e8257-3447-4805-92f1-35237212aebe")
+	)
+	(wire
+		(pts
+			(xy 154.94 55.88) (xy 152.4 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b41014ff-5cc3-409a-aac8-27efbf35c06a")
+	)
+	(label "OUT2"
+		(at 154.94 55.88 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "bae0b1fb-87e6-4578-b2aa-d968ecbec5eb")
+	)
+	(wire
+		(pts
+			(xy 154.94 58.42) (xy 152.4 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3e55727-d0e4-48fb-aedf-402471b1818a")
+	)
+	(label "OUT3"
+		(at 154.94 58.42 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8d5c3d6e-ec8e-4143-9ee5-cbacaeea7e47")
+	)
+	(wire
+		(pts
+			(xy 154.94 60.96) (xy 152.4 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cbbffaee-d860-4567-b3a3-95899f9c3687")
+	)
+	(label "OUT4"
+		(at 154.94 60.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3602c831-8ec0-4299-b716-53e2cf7d65ba")
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

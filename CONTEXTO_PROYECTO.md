@@ -347,6 +347,12 @@ Notas: el TVS de **Vbb** (plano de potencia, después del fusible master) **no e
 - **Sin rutear en la Celda7:** 3 conexiones cortas (`Net-(R653-Pad1)`, `Net-(Q602-C)`×2). En la Celda4 siguen 4 (ver arriba). Además faltan las uniones de +12 V de los BTS del reverso (celdas 4, 5 y 7), las líneas lógicas hacia el micro y los grupos de R12 THT por revisar a mano.
 - **Aviso técnico (API de KiCad):** al guardar, KiCad propaga la red de un pad nuevo a las pistas/vías que quedan bajo él. Al crear huellas por script hay que **aparcarlas fuera del contorno** y moverlas después; si se crean encima de cobre existente cambian de red 20 elementos.
 
+### Rama `separate-boards`: dos placas y celda dorada (30 oct)
+- **Cambio de rumbo:** el intento de una sola placa con celdas en B.Cu (celdas 4, 5, 7) hizo muy difícil el ruteo por las vías pasantes. Se pasa a **dos placas apiladas** (`placa-master` y `placa-slave`), ambas con componentes a doble cara, que comparten una **celda dorada** rediseñada a doble cara y replicada por traslación. El intento anterior queda en `main` (etiqueta `doble-cara-v1` sugerida) y en `legacy/`.
+- **Decisiones:** solo dos MCP (`U4` en la master, `U5` en la slave; las 7 salidas controladas de la slave salen de pines libres de `U4`), I²C + salidas por un cable con conector de pestillo, entrada de +12 V propia en cada placa, un LDO de 3,3 V por placa, placas separadas con separadores M3, etiquetas de celda eliminadas del esquemático (se conservan las de ESP32 y MCP).
+- **Hecho:** estructura de carpetas (`celda/`, `placa-master/`, `placa-slave/`, `herramientas/`, `docs/`, `legacy/`) y proyecto `celda/` extraído de la Celda1. Detalle en [docs/arquitectura.md](docs/arquitectura.md); avisos abiertos en [docs/avisos-electricos.md](docs/avisos-electricos.md).
+- **Siguiente:** rediseñar la celda dorada a doble cara, crear los esquemáticos raíz de las placas y el script de replicación.
+
 ### Pendiente — esquemático
 - [ ] **Conectar `A1`, `U4` y `U5`** según la sección 6 (SDA/SCL, pull-ups, `RESET` a 3.3V, direcciones 0x20/0x21, desacoples de 100 nF, alimentación del devkit por `VIN`, no conectar `3V3`).
 - [ ] Asignar qué canal va a qué salida/entrada (tabla canal → salida y canal → entrada de falla) siguiendo el reparto de la sección 6.

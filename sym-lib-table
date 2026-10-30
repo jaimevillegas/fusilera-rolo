@@ -1,4 +1,0 @@
-(sym_lib_table
-	(version 7)
-	(lib (name "fusilera")(type "KiCad")(uri "${KIPRJMOD}/libs/fusilera.kicad_sym")(options "")(descr "Simbolos propios del proyecto"))
-)
