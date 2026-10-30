@@ -32,4 +32,11 @@ Regla de fondo: `GPA7` y `GPB7` de un MCP23017 solo pueden ser salidas; cada MCP
 
 ## Estado del cableado (30 oct)
 
-Hecho: etiquetas de las señales de arriba en celdas, ESP32 y MCP, y el conector. **Pendiente** (no tocado a propósito): alimentación y masa de `A1`/`U4`/`U5`, `SDA`/`SCK` de los MCP, `RESET`, `A0…A2`, pull-ups de I²C, condensador de desacoplo de `U4` (la slave ya trae `C6` para `U5`), unir las redes del bloque de poder (`VBB`↔`+12V`, `V3V3_OUT`↔`+3.3V`, `VIN_ESP32`↔`VIN`), conectores `MANUALk` y `OUTk`, y el segundo LDO de la master (solo hay que dejar sitio en el PCB).
+Hecho en ambos esquemáticos raíz:
+- Etiquetas de las señales de arriba en celdas, ESP32, MCP y conector `J10`.
+- MCP: `VDD` a +3,3 V, `VSS` a GND, `RESET` a +3,3 V, `SDA`/`SCK` a las redes `SDA`/`SCL`, direcciones (`U4` = 0x20 con `A0`–`A2` a GND; `U5` = 0x21 con `A0` a +3,3 V), 100 nF de desacoplo (`C6`) y marcas de no conectado en los pines sin uso.
+- I²C: los pull-ups de 4,7 kΩ (`R901`, `R902`) están **solo en la master** (un juego por bus).
+- **Master**: entrada de +12 V (`J1`) y masa (`J2`), LDO 3,3 V (`U7`, `C14`, `C15`) alimentado desde `LINK_5V`, y `D6` entre `LINK_5V` y `VIN` del ESP32 (anti-retroalimentación USB). El `3V3` del devkit queda sin conectar.
+- **Slave**: el bloque de poder del monolito sin `D6`; el riel de 5 V sale por `LINK_5V` al conector, `VBB` se une a `+12V` y `V3V3_OUT` a `+3.3V`.
+
+Pendiente: conectores `MANUALk` y `OUTk` (siguen como etiquetas sueltas), fusible master (`F1`, valor por preguntar al cliente) y TVS de Vbb, `EN` del ESP32 (queda sin conectar: el devkit ya trae su pull-up), tiras de +12 V del PCB (se hacen al final con todo armado).

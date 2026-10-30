@@ -13,6 +13,7 @@ Uso: generar_raiz.py {master|slave} [directorio_salida]
 - NO cablea alimentación ni I²C de los MCP (SDA/SCL solo llegan al ESP32 y al conector).
 """
 import json
+import math
 import os
 import re
 import sys
@@ -95,7 +96,8 @@ def set_instance(blk, project, root, ref):
     i = blk.index("(instances")
     j = balanced(blk, i)
     unit = re.search(r"\(unit (\d+)\)", blk[i:j]).group(1)
-    return blk[:i] + new % (project, root, ref, unit) + blk[j:]
+    out = blk[:i] + new % (project, root, ref, unit) + blk[j:]
+    return out if out.endswith("\n") else out + "\n"
 
 
 def reseed_uuids(blk):
@@ -237,31 +239,143 @@ def build(board, outdir):
         nref += 1
     cell_out = "".join(parts)
 
+    # --- ayudas de colocación y cableado por etiquetas --------------------
+    pw = [400]
+
+    def psym(net, x, y):
+        tpl, (ox, oy) = ("#PWR091", (72.39, 35.56)) if net == "GND" else ("#PWR094", (83.82, 406.4))
+        pw[0] += 1
+        ref = "#PWR0%d" % pw[0]
+        s = reseed_uuids(shift_block(legacy_symbol(tpl), x - ox, y - oy)).replace('"%s"' % tpl, '"%s"' % ref)
+        if net not in ("GND", "+3.3V"):
+            s = s.replace("+3.3V", net)
+        return set_instance(s, proj, root, ref)
+
+    def part(legacy_ref, new_ref, x, y, value=None):
+        b = legacy_symbol(legacy_ref)
+        m = re.search(r"\(at ([-\d.]+) ([-\d.]+) (\d+)\)", b)
+        b = reseed_uuids(shift_block(b, x - float(m.group(1)), y - float(m.group(2))))
+        # uuid del símbolo estable entre ejecuciones: el PCB enlaza sus huellas por él
+        b = re.sub(r'\(uuid "[0-9a-f-]+"\)', '(uuid "%s")' % uuid.uuid5(uuid.UUID(root), "sym:" + new_ref), b, count=1)
+        if new_ref != legacy_ref:
+            b = b.replace('(property "Reference" "%s"' % legacy_ref, '(property "Reference" "%s"' % new_ref, 1)
+        if value:
+            b = re.sub(r'\(property "Value" "[^"]*"', '(property "Value" "%s"' % value, b, count=1)
+        return set_instance(b, proj, root, new_ref), int(m.group(3))
+
+    def glabel(net, x, y, dx, dy):
+        ang = {(1, 0): 0, (-1, 0): 180, (0, -1): 90, (0, 1): 270}[(dx, dy)]
+        fx = '(effects\n\t\t\t(font\n\t\t\t\t(size 1.27 1.27)\n\t\t\t)%s\n\t\t)'
+        return ('\t(global_label "%s"\n\t\t(shape input)\n\t\t(at %s %s %d)\n\t\t%s\n\t\t(uuid "%s")\n'
+                '\t\t(property "Intersheet References" "${INTERSHEET_REFS}"\n\t\t\t(at %s %s 0)\n\t\t\t(show_name no)\n\t\t\t(do_not_autoplace no)\n\t\t\t%s\n\t\t)\n\t)\n'
+                ) % (net, fm(x), fm(y), ang, fx % ("\n\t\t\t(justify %s)" % ("right" if ang == 180 else "left")),
+                     uid(), fm(x), fm(y), fx % "\n\t\t\t(hide yes)")
+
+    def lab(net, x, y, dx, dy):
+        ang = {(1, 0): 0, (-1, 0): 180, (0, -1): 90, (0, 1): 270}[(dx, dy)]
+        return ('\t(label "%s"\n\t\t(at %s %s %d)\n\t\t(effects\n\t\t\t(font\n\t\t\t\t(size 1.27 1.27)\n\t\t\t)\n\t\t\t(justify %s bottom)\n\t\t)\n'
+                '\t\t(uuid "%s")\n\t)\n') % (net, fm(x), fm(y), ang, "right" if ang == 180 else "left", uid())
+
+    def no_connect(x, y):
+        return '\t(no_connect\n\t\t(at %s %s)\n\t\t(uuid "%s")\n\t)\n' % (fm(x), fm(y), uid())
+
+    def tie(lp, sx, sy, mapping, rot=0, nc=()):
+        """Cable de 2,54 mm + etiqueta, símbolo de alimentación o marca de no conectado por pin."""
+        out = ""
+        for num, net in list(mapping.items()) + [(n, None) for n in nc]:
+            px, py, ang = lp.pins[num]
+            if rot == 180:
+                px, py, ang = -px, -py, (ang + 180) % 360
+            x, y = sx + px, sy - py
+            dx, dy = -round(math.cos(math.radians(ang))), round(math.sin(math.radians(ang)))
+            if net is None:
+                out += no_connect(x, y)
+                continue
+            xe, ye = x + 2.54 * dx, y + 2.54 * dy
+            out += wire(x, y, xe, ye)
+            power = net in ("GND", "+3.3V", "+12V")
+            if power and dx == 0 and ((net == "GND") == (dy > 0)):
+                out += psym(net, xe, ye)       # el símbolo mira hacia fuera del componente
+            elif power:
+                out += glabel(net, xe, ye, dx, dy)
+            else:
+                out += lab(net, xe, ye, dx, dy)
+        return out
+
+    def flag(net, x, y, local=False):
+        s = reseed_uuids(shift_block(legacy_symbol("#FLG11"), x - 166.37, y - 50.8))
+        pw[0] += 1
+        s = s.replace('"#FLG11"', '"#FLG0%d"' % pw[0])
+        return set_instance(s, proj, root, "#FLG0%d" % pw[0]) + (lab(net, x, y, 1, 0) if local else glabel(net, x, y, 1, 0))
+
+    pins_r = LibPins(get_lib(lib_text, "Device:R"))
+    pins_c = LibPins(get_lib(lib_text, "Device:C"))
+    pins_d = LibPins(get_lib(lib_text, "Device:D_Schottky"))
+    pins_ldo = LibPins(get_lib(lib_text, "Regulator_Linear:AP2112K-3.3"))
+    pins_term = LibPins(get_lib(lib_text, "Connector:Screw_Terminal_01x01"))
+
     # --- microcontrolador / MCP ----------------------------------------
     if board == "master":
-        a1 = reseed_uuids(shift_block(legacy_symbol("A1"), 218.44 - 210.82, 69.85 - 177.8))
-        body += set_instance(a1, proj, root, "A1")
-        body += label_pins(pins_esp, 218.44, 69.85, ESP32_MASTER)
-        u4 = reseed_uuids(shift_block(legacy_symbol("U4"), 218.44 - 217.17, 149.86 - 241.3))
-        body += set_instance(u4, proj, root, "U4")
-        body += label_pins(pins_mcp, 218.44, 149.86, U4_PINS)
+        s, _ = part("A1", "A1", 218.44, 69.85)
+        body += s + tie(pins_esp, 218.44, 69.85, {**ESP32_MASTER, 14: "GND", 29: "GND", 15: "VIN_ESP32"},
+                        nc=[1, 11, 12, 18, 19, 23, 27, 28, 30])
+        s, _ = part("U4", "U4", 218.44, 149.86)
+        body += s + tie(pins_mcp, 218.44, 149.86,
+                        {**U4_PINS, 9: "+3.3V", 10: "GND", 18: "+3.3V", 15: "GND", 16: "GND", 17: "GND", 12: "SCL", 13: "SDA"},
+                        nc=[7, 19, 20])
+        s, _ = part("C6", "C6", 254.0, 149.86)       # desacoplo de U4
+        body += s + tie(pins_c, 254.0, 149.86, {1: "+3.3V", 2: "GND"})
+        # pull-ups de I2C (uno por bus, en la master)
+        for ref, x, net in (("R901", 330.2, "SDA"), ("R902", 342.9, "SCL")):
+            s, _ = part("R17", ref, x, 195.58, "4.7k")
+            body += s + tie(pins_r, x, 195.58, {1: "+3.3V", 2: net})
+        # LDO 3,3 V de la master (entrada: LINK_5V desde la slave) y diodo hacia VIN del ESP32
+        s, _ = part("U7", "U7", 285.75, 201.93)
+        body += s + tie(pins_ldo, 285.75, 201.93, {1: "LINK_5V", 3: "LINK_5V", 2: "GND", 5: "+3.3V"}, nc=[4])
+        s, _ = part("C14", "C14", 266.7, 201.93)
+        body += s + tie(pins_c, 266.7, 201.93, {1: "LINK_5V", 2: "GND"})
+        s, _ = part("C15", "C15", 304.8, 201.93)
+        body += s + tie(pins_c, 304.8, 201.93, {1: "+3.3V", 2: "GND"})
+        s, rot = part("D6", "D6", 266.7, 228.6)
+        body += s + tie(pins_d, 266.7, 228.6, {2: "LINK_5V", 1: "VIN_ESP32"}, rot=rot)
+        # entradas de +12 V y masa propias de la placa
+        s, rot = part("J1", "J1", 266.7, 254.0)
+        body += s + tie(pins_term, 266.7, 254.0, {1: "+12V"}, rot=rot)
+        s, rot = part("J2", "J2", 266.7, 266.7)
+        body += s + tie(pins_term, 266.7, 266.7, {1: "GND"}, rot=rot)
+        for net, fx, local in (("+12V", 292.1, False), ("GND", 304.8, False), ("LINK_5V", 317.5, True), ("VIN_ESP32", 330.2, True)):
+            body += flag(net, fx, 254.0, local)
     else:
-        u5 = reseed_uuids(shift_block(legacy_symbol("U5"), 231.14 - 217.17, 149.86 - 306.07))
-        body += set_instance(u5, proj, root, "U5")
-        body += label_pins(pins_mcp, 231.14, 149.86, U5_PINS)
-        c6 = reseed_uuids(shift_block(legacy_symbol("C6"), 231.14 - 217.17, 149.86 - 306.07))
-        body += set_instance(c6, proj, root, "C6")
-        # bloque de poder: símbolos, cables y textos del monolito con y < 100
+        s, _ = part("U5", "U5", 231.14, 149.86)
+        body += s + tie(pins_mcp, 231.14, 149.86,
+                        {**U5_PINS, 9: "+3.3V", 10: "GND", 18: "+3.3V", 15: "+3.3V", 16: "GND", 17: "GND", 12: "SCL", 13: "SDA"},
+                        nc=[19, 20])
+        s, _ = part("C6", "C6", 254.0, 190.5)        # desacoplo de U5
+        body += s + tie(pins_c, 254.0, 190.5, {1: "+3.3V", 2: "GND"})
+        # bloque de poder del monolito (y < 100). D6 y su salida VIN_ESP32 pasan a la master.
+        skip_wire = {(203.2, 50.8), (209.55, 50.8)}
         for n, b in blocks:
             if n == "symbol":
                 ref = re.search(r'\(property "Reference" "([^"]+)"', b).group(1)
                 y = float(re.search(r"\(at [-\d.]+ ([-\d.]+)", b).group(1))
-                if y < 100 and ref not in ("A1", "U4", "U5"):
+                if y < 100 and ref not in ("A1", "U4", "U5", "D6"):
                     body += set_instance(b, proj, root, ref)
             elif n in ("wire", "junction", "label", "text", "polyline", "no_connect"):
                 ys = [float(a or c) for a, c in re.findall(r"\(xy [-\d.]+ ([-\d.]+)\)|\(at [-\d.]+ ([-\d.]+)", b)]
-                if ys and max(ys) < 100:
-                    body += b + "\n"
+                if not (ys and max(ys) < 100):
+                    continue
+                if n == "label" and b.split('"')[1] in ("VIN_ESP32", "VBB", "V3V3_OUT"):
+                    continue
+                if n == "wire":
+                    xy = {(float(a), float(c)) for a, c in re.findall(r"\(xy ([-\d.]+) ([-\d.]+)\)", b)}
+                    if xy == skip_wire:
+                        continue
+                body += b + "\n"
+        # uniones del bloque: riel de 5 V hacia el conector, Vbb a +12V y salida del LDO a +3.3V
+        body += lab("LINK_5V", 195.58, 50.8, 1, 0)
+        body += wire(36.83, 25.4, 36.83, 27.94) + psym("+12V", 36.83, 25.4)
+        body += wire(222.25, 60.96, 222.25, 63.5) + psym("+3.3V", 222.25, 60.96)
+        body += flag("+12V", 60.96, 15.24)
     # --- conector de enlace ---------------------------------------------
     jx, jy = 320.04, 120.65
     j10 = ('\t(symbol\n\t\t(lib_id "Connector_Generic:Conn_01x14")\n\t\t(at %s %s 0)\n\t\t(unit 1)\n\t\t(body_style 1)\n\t\t(exclude_from_sim no)\n'
@@ -270,19 +384,19 @@ def build(board, outdir):
            '\t\t(property "Value" "Enlace_placas"\n\t\t\t(at %s %s 0)\n\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n'
            '\t\t(property "Footprint" "Connector_JST:JST_XH_B14B-XH-A_1x14_P2.50mm_Vertical"\n\t\t\t(at %s %s 0)\n\t\t\t(hide yes)\n\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n'
            '\t\t(property "Datasheet" "~"\n\t\t\t(at %s %s 0)\n\t\t\t(hide yes)\n\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n'
-           % (fm(jx), fm(jy), uid(), fm(jx), fm(jy - 22), fm(jx), fm(jy + 22), fm(jx), fm(jy), fm(jx), fm(jy)))
+           % (fm(jx), fm(jy), uuid.uuid5(uuid.UUID(root), "sym:J10"), fm(jx), fm(jy - 22), fm(jx), fm(jy + 22), fm(jx), fm(jy), fm(jx), fm(jy)))
     for n in range(1, 15):
         j10 += '\t\t(pin "%d"\n\t\t\t(uuid "%s")\n\t\t)\n' % (n, uid())
     j10 += '\t\t(instances\n\t\t\t(project "%s"\n\t\t\t\t(path "/%s"\n\t\t\t\t\t(reference "J10")\n\t\t\t\t\t(unit 1)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n\t)\n' % (proj, root)
     body += j10
     gnd_n = 0
     for num, net in enumerate(LINK_PINS, start=1):
-        if net is None:
-            continue
         px, py, ang = pins_conn.pins[num]
         x, y = jx + px, jy - py
         xe = x - 2.54
-        if net == "GND":
+        if net is None:
+            body += no_connect(x, y)
+        elif net == "GND":
             gnd_n += 1
             g = reseed_uuids(legacy_symbol("#PWR091"))
             g = shift_block(g, xe - 72.39, y - 35.56).replace('"#PWR091"', '"#PWR0%d"' % (300 + gnd_n))
