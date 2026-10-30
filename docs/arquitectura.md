@@ -17,7 +17,7 @@ Decisiones tomadas con el usuario (29–30 oct 2026). Todo lo marcado *por decid
 | `placa-slave` | MCP23017 `U5` (0x21), celdas de los 16 canales restantes (7 controlados + 9 directos), bloque de poder (buck 12→5 V), LDO 3,3 V, conector hacia la master |
 
 - **Solo dos MCP** (`U4` y `U5`), sin tercero.
-- `U5` (slave) lee las **16 fallas** de la slave (llena sus 16 pines). Las **7 salidas controladas** de la slave salen de pines libres de `U4` (master, tiene 9 libres) y cruzan al conector.
+- **Corrección (30 oct):** `GPA7` y `GPB7` de un MCP23017 solo pueden ser salidas, así que cada MCP lee como máximo **14 fallas**. `U5` (slave) lee 14 de las 16 fallas de la slave y usa `GPA7`/`GPB7` como 2 de las 7 salidas controladas de la slave. Las otras 5 salidas salen de `U4` (master) y las 2 fallas restantes de la slave las lee `U4`; en total **7 líneas digitales** cruzan por el conector (5 de la master a la slave y 2 de la slave a la master). *Reparto exacto por decidir* (ver propuesta en la conversación o en `docs/pinout-conector.md` cuando exista).
 - Las 9 salidas directas tienen su `ESP32_OUT` amarrado a +3,3 V dentro de la celda o en la raíz.
 - Las etiquetas de los lados de celda en el esquemático se eliminaron (incluidas las de la Celda1); se conservan las del ESP32 y los MCP.
 
@@ -43,5 +43,5 @@ Ver `CLAUDE.md`. Las celdas de las placas se generan con `herramientas/` desde `
 1. ✅ Carpetas creadas; monolito movido a `legacy/`.
 2. ✅ Proyecto `celda/` extraído de la Celda1 (esquemático: 87 componentes, ERC sin errores; PCB: paridad 0). Hereda cosas por corregir al rediseñarla: `FALLA4` sin cerrar, +12 V sin tiras, 4 vías sueltas, vía de +3,3 V con tramo suelto.
 3. ⏳ Rediseñar la celda dorada a doble cara.
-4. ⏳ Crear los esquemáticos raíz de las dos placas y el script de replicación.
-5. ⏳ Verificación de cada placa (DRC, conectividad, paridad) y pinout del conector.
+4. 🔄 Esquemáticos raíz de las dos placas: **generados** (`herramientas/generar_raiz.py`, reparto de pines en `docs/asignacion-pines.md`, conector en `docs/pinout-conector.md`); sin ERC con errores y con las redes por canal verificadas con el netlist. Falta cablear alimentación/I²C de los MCP y las uniones del bloque de poder. Falta también el script de replicación del PCB (necesita la celda con +12 V y contorno cerrados).
+5. ⏳ Verificación de cada placa (DRC, conectividad, paridad) y script que compare el pinout del conector.

@@ -2,7 +2,7 @@
 
 ## 1. Retroalimentación entre placas por las líneas de salida (anotado 30 oct, por revisar)
 
-Las 7 salidas controladas de la slave salen de `U4` (master) y cruzan por el conector hasta el OR de diodos (`ESP32_OUT` → resistencia → diodo → nodo `IN`) de cada celda de la slave.
+Las salidas controladas de la slave que no salen de `U5` (5 según la corrección del 30 oct, ver `docs/arquitectura.md`) salen de `U4` (master) y cruzan por el conector hasta el OR de diodos (`ESP32_OUT` → resistencia → diodo → nodo `IN`) de cada celda de la slave. Las 2 fallas de la slave que lee `U4` cruzan en sentido contrario (push-pull de 0/3,3 V desde la slave).
 
 - Si una placa queda **sin alimentación** (3,3 V local o +12 V ausente) mientras la otra empuja la línea a nivel alto, la corriente puede entrar por el diodo del OR hacia el nodo `IN` de la celda sin alimentar y polarizar parcialmente el BTS o su entrada.
 - Al revés (master apagada, slave encendida), las salidas de `U4` quedan en alta impedancia o en cero: sin pull-down del lado de la slave, el nivel de esas líneas sería indefinido.
