@@ -9,11 +9,14 @@ Hace, por cada celda de la placa:
   - renumera referencias (+100 por celda), enlaza cada huella a su símbolo del esquemático raíz
     (misma ruta que genera generar_raiz.py) y toma la red de cada pad del netlist de la placa;
   - traduce las redes de pistas y vías por pad (las redes de interfaz pasan a ser las del canal).
+Con una sola columna (por defecto) la celda 1 va abajo y las demás encima. Las tiras de +12 V de la celda
+dorada (pistas de 9 mm en F.Cu) se unen entre celdas, bajan hasta un tronco inferior que cierra las dos
+tiras y alimenta el borne `J1`; `J2` (GND) se coloca a su izquierda. Con `--cols` mayor que 1 las tiras
+quedan sueltas (el script avisa).
 Además crea un plano GND (In1) y un plano +3,3 V (In2) únicos del tamaño de la placa y un contorno
-rectangular provisional. NO hace tiras de +12 V: las conexiones de +12 V de los BTS se dejan sin
-rutear a propósito (se dibujan al final, con todo armado) y el script lo avisa al terminar.
+rectangular provisional alrededor de todo el contenido (`--margen`).
 Las huellas de la raíz (ESP32, MCP, bloque de poder, conector) se cargan de las bibliotecas según el
-esquemático y se dejan en una franja provisional bajo las celdas, ya enlazadas y con sus redes.
+esquemático y se dejan en una franja provisional sobre las celdas, ya enlazadas y con sus redes.
 """
 import argparse
 import collections
@@ -32,6 +35,9 @@ BOARDS = {
     "slave": dict(cells=[4, 5, 6, 7], cols=1),
 }
 GLOBAL_NETS = ("GND", "+3.3V", "+12V")
+TRONCO_BAJADA = 17.15      # mm entre el fondo de la tira de la celda inferior y el eje del tronco con J1
+TRONCO_CHAFLAN = 3.0       # mm del chaflán entre el tronco y la tira derecha
+BORNES_HOLGURA = 1.1       # mm entre los anillos de J1 y J2
 mm, F = pcbnew.ToMM, pcbnew.FromMM
 
 
@@ -132,6 +138,7 @@ def main():
     ap.add_argument("--cols", type=int, help="celdas por fila (por defecto 1: las celdas van en columna)")
     ap.add_argument("--sep", type=float, default=3.0, help="separación entre celdas en mm (por defecto 3)")
     ap.add_argument("--origen", default="10,10", help="esquina superior izquierda de la primera celda, mm")
+    ap.add_argument("--margen", type=float, default=2.0, help="margen del contorno alrededor del contenido, mm (por defecto 2)")
     ap.add_argument("-o", dest="out")
     ap.add_argument("--forzar", action="store_true", help="sobrescribir un PCB que ya existe (pierde el trabajo manual)")
     a = ap.parse_args()
@@ -177,12 +184,76 @@ def main():
             nets[name] = n
         return nets[name]
 
+    def add_track(x_a, y_a, x_b, y_b, width):
+        """Pista de +12 V en F.Cu (coordenadas en mm)."""
+        t = pcbnew.PCB_TRACK(b)
+        t.SetLayer(pcbnew.F_Cu)
+        t.SetStart(pcbnew.VECTOR2I(F(x_a), F(y_a)))
+        t.SetEnd(pcbnew.VECTOR2I(F(x_b), F(y_b)))
+        t.SetWidth(F(width))
+        t.SetNet(get_net("+12V"))
+        b.Add(t)
+
+    # tiras verticales de +12 V de la celda dorada: x -> (y_sup, y_inf, ancho)
+    tiras = {}
+    for t in src.GetTracks():
+        if t.GetClass() == "PCB_TRACK" and t.GetNetname() == "+12V" and mm(t.GetWidth()) >= 5:
+            xs = round(mm(t.GetStart().x), 3)
+            ys = [mm(t.GetStart().y), mm(t.GetEnd().y)]
+            lo, hi, w = tiras.get(xs, (min(ys), max(ys), mm(t.GetWidth())))
+            tiras[xs] = (min(lo, *ys), max(hi, *ys), w)
+    if tiras and cols != 1:
+        print("Aviso: las tiras de +12 V solo se unen entre celdas con una sola columna (--cols 1); "
+              "con más columnas las celdas quedan con sus tiras sueltas.")
+
+    # --- huellas de la raíz: se cargan ya y se colocan en una franja sobre las celdas ----
+    parts = sorted(read_root_parts(f"{boarddir}/{proj}.kicad_sch"),
+                   key=lambda q: (PRIORIDAD.index(q[0]) if q[0] in PRIORIDAD else 99, q[0]))
+    raiz = []
+    for ref, val, fpid, suid, extra in parts:
+        fp = load_footprint(fpid)
+        fp.SetReference(ref)
+        fp.SetValue(val)
+        for f in fp.GetFields():      # Datasheet y Description como en el símbolo (evita avisos de paridad)
+            if f.GetName() in extra:
+                f.SetText(extra[f.GetName()])
+        fp.SetExcludedFromBOM(not extra["in_bom"])
+        fp.SetPath(pcbnew.KIID_PATH("/%s/%s" % (root, suid)))
+        for p in fp.Pads():
+            key = (ref, p.GetNumber())
+            p.SetNet(get_net(pin2net[key]) if key in pin2net else get_net(""))
+        raiz.append(fp)
+    bornes = [f for f in raiz if f.GetReference() in ("J1", "J2")] if tiras and cols == 1 else []
+    franja = [f for f in raiz if f not in bornes]
+    # empaquetado por filas; el alto total decide dónde empiezan las celdas
+    pos, x, y, rowh = [], tx0, 0.0, 0.0
+    ancho_franja = max(cw, 100.0)
+    for fp in franja:
+        r = fp.GetBoundingBox(False)
+        w, h = mm(r.GetWidth()), mm(r.GetHeight())
+        if x > tx0 and x + w > tx0 + ancho_franja:
+            x, y, rowh = tx0, y + rowh + 3.0, 0.0
+        pos.append((fp, x - mm(r.GetX()), y - mm(r.GetY())))
+        x, rowh = x + w, max(rowh, h)
+        x += 3.0
+    alto_franja = y + rowh if franja else 0.0
+    celdas_y0 = ty0 + (alto_franja + 6.0 if franja else 0.0)
+    for fp, ox, oy in pos:
+        fp.Move(pcbnew.VECTOR2I(F(ox), F(oy + ty0)))
+        b.Add(fp)
+
     stats = collections.Counter()
+    n_celdas = len(cfg["cells"])
+    celda_dy = {}      # índice de celda -> desplazamiento en y (mm)
+    dx_col = None
     for idx, k in enumerate(cfg["cells"]):
         off = 100 * (k - 1)
         sheet = str(uuid.uuid5(uuid.UUID(root), "Celda%d" % k))
-        dx = F(tx0 + (idx % cols) * px - x0)
-        dy = F(ty0 + (idx // cols) * py - y0)
+        fila = n_celdas - 1 - idx if cols == 1 else idx // cols    # en columna, la celda 1 va abajo
+        dx_mm = tx0 + (idx % cols) * px - x0
+        dy_mm = celdas_y0 + fila * py - y0
+        celda_dy[idx], dx_col = dy_mm, dx_mm
+        dx, dy = F(dx_mm), F(dy_mm)
         mv = pcbnew.VECTOR2I(dx, dy)
 
         def cell_net(gname):
@@ -231,42 +302,37 @@ def main():
             b.Add(nd)
             stats["rótulos"] += 1
 
-    # --- huellas de la raíz en una franja bajo las celdas (colocación provisional) ----
-    rows = (len(cfg["cells"]) + cols - 1) // cols
-    ncols = min(cols, len(cfg["cells"]))
-    width = ncols * px - a.sep
-    x, y, rowh = tx0, ty0 + rows * py - a.sep + 6.0, 0.0
-    maxx = tx0 + width
-    parts = sorted(read_root_parts(f"{boarddir}/{proj}.kicad_sch"),
-                   key=lambda q: (PRIORIDAD.index(q[0]) if q[0] in PRIORIDAD else 99, q[0]))
-    for ref, val, fpid, suid, extra in parts:
-        fp = load_footprint(fpid)
-        fp.SetReference(ref)
-        fp.SetValue(val)
-        for f in fp.GetFields():      # Datasheet y Description como en el símbolo (evita avisos de paridad)
-            if f.GetName() in extra:
-                f.SetText(extra[f.GetName()])
-        fp.SetExcludedFromBOM(not extra["in_bom"])
-        fp.SetPath(pcbnew.KIID_PATH("/%s/%s" % (root, suid)))
-        r = fp.GetBoundingBox(False)
-        w, h = mm(r.GetWidth()), mm(r.GetHeight())
-        if x > tx0 and x + w > tx0 + max(width, 100.0):
-            x, y, rowh = tx0, y + rowh + 3.0, 0.0
-        fp.Move(pcbnew.VECTOR2I(F(x - mm(r.GetX())), F(y - mm(r.GetY()))))
-        maxx = max(maxx, x + w)
-        x, rowh = x + w + 3.0, max(rowh, h)
-        for p in fp.Pads():
-            key = (ref, p.GetNumber())
-            p.SetNet(get_net(pin2net[key]) if key in pin2net else get_net(""))
-        b.Add(fp)
-        stats["huellas de la raíz"] += 1
-    strip_bottom = y + rowh
+    # --- tiras de +12 V: uniones entre celdas, tronco inferior y bornes J1/J2 -----------
+    if tiras and cols == 1:
+        for xs, (ys0, ys1, w) in sorted(tiras.items()):
+            for idx in range(n_celdas - 1):           # idx + 1 queda justo encima de idx
+                add_track(xs + dx_col, ys1 + celda_dy[idx + 1], xs + dx_col, ys0 + celda_dy[idx], w)
+                stats["uniones de +12 V"] += 1
+        xl, xr = min(tiras), max(tiras)
+        ybase = max(v[1] for v in tiras.values()) + celda_dy[0]    # fondo de la tira de la celda inferior
+        ytr = ybase + TRONCO_BAJADA
+        w = tiras[xl][2]
+        add_track(xl + dx_col, ybase, xl + dx_col, ytr, w)
+        add_track(xl + dx_col, ytr, xr + dx_col - TRONCO_CHAFLAN, ytr, w)
+        add_track(xr + dx_col - TRONCO_CHAFLAN, ytr, xr + dx_col, ytr - TRONCO_CHAFLAN, w)
+        add_track(xr + dx_col, ybase, xr + dx_col, ytr - TRONCO_CHAFLAN, w)
+        stats["pistas de tronco de +12 V"] += 4
+        j1 = next((f for f in bornes if f.GetReference() == "J1"), None)
+        j2 = next((f for f in bornes if f.GetReference() == "J2"), None)
+        if j1 is not None:
+            j1.SetPosition(pcbnew.VECTOR2I(F(xl + dx_col), F(ytr)))
+            b.Add(j1)
+        if j2 is not None:
+            r1 = max(mm(p.GetSizeX()) for p in j1.Pads()) / 2 if j1 is not None else 6.4
+            r2 = max(mm(p.GetSizeX()) for p in j2.Pads()) / 2
+            j2.SetPosition(pcbnew.VECTOR2I(F(xl + dx_col - (r1 + r2 + BORNES_HOLGURA)), F(ytr)))
+            b.Add(j2)
+    stats["huellas de la raíz"] = len(raiz)
 
     # --- contorno provisional y planos únicos -----------------------------------
-    m = 2.0
-    bx0, by0 = tx0 - m, ty0 - m
-    bx1 = maxx + m
-    by1 = strip_bottom + m
+    bxa, bya, bxb, byb = content_bbox(b)
+    m = a.margen
+    bx0, by0, bx1, by1 = bxa - m, bya - m, bxb + m, byb + m
     pts = [(bx0, by0), (bx1, by0), (bx1, by1), (bx0, by1), (bx0, by0)]
     for p, q in zip(pts, pts[1:]):
         s = pcbnew.PCB_SHAPE(b)
@@ -288,8 +354,9 @@ def main():
     b.Save(out)
     print(f"{out}: " + ", ".join(f"{v} {k}" for k, v in stats.items())
           + f"; contorno {bx1 - bx0:.1f} x {by1 - by0:.1f} mm")
-    print("Aviso: las conexiones de +12 V (BTS) quedan sin rutear a propósito. Las huellas de la raíz "
-          "están en una franja provisional bajo las celdas: colócalas a mano.")
+    if not (tiras and cols == 1):
+        print("Aviso: sin tiras de +12 V; las conexiones de +12 V de los BTS quedan sin rutear.")
+    print("Las huellas de la raíz están en una franja provisional sobre las celdas: colócalas a mano.")
 
 
 if __name__ == "__main__":

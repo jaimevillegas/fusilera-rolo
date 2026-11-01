@@ -16,8 +16,8 @@ Revisión de `placa-master/placa-master.kicad_pcb` tal como quedó tras los ajus
 
 ## Observaciones
 
-1. **Las celdas ya no son copias de la dorada.** El reruteo interno es distinto en cada celda (por ejemplo `Net-(Q4-C)`, `Net-(U1B--)`, `FALLAk`, `ESP32_OUTk`), y `celda/` no lo tiene. La slave no lo heredará y volver a generar la master lo pierde. Decidir si se lleva a la celda dorada.
-2. **Desalineación en x** de las celdas 2 y 3: 0,15 y 0,12 mm respecto de la celda 1. Las tiras de +12 V tienen por eso pequeños quiebres de 0,1–0,2 mm.
+1. ✅ *(31 oct: llevado a `celda/`; la slave se regeneró con ello; la master conserva sus cambios a mano)* **Las celdas ya no son copias de la dorada.** El reruteo interno es distinto en cada celda (por ejemplo `Net-(Q4-C)`, `Net-(U1B--)`, `FALLAk`, `ESP32_OUTk`), y `celda/` no lo tiene. La slave no lo heredará y volver a generar la master lo pierde. Decidir si se lleva a la celda dorada.
+2. ✅ *(31 oct: el script coloca las celdas con traslación exacta; solo afecta a la master actual)* **Desalineación en x** de las celdas 2 y 3: 0,15 y 0,12 mm respecto de la celda 1. Las tiras de +12 V tienen por eso pequeños quiebres de 0,1–0,2 mm.
 3. *(decidido 31 oct: se dejan en 9 mm)* **Ancho de las tiras de +12 V.** 9 mm en 2 oz y una sola capa equivale a ΔT ≈ 60 K para 25–30 A durante < 5 s según `CONTEXTO_PROYECTO.md` (para ΔT 30–40 K pedía 11–13 mm). El tronco inferior lleva la corriente de la tira derecha. Opciones: abrir máscara y estañar, pour espejo en B.Cu con vías, o ensanchar. Falta confirmar la corriente continua con el cliente.
 4. *(31 oct: se dejan así, por revisar con los terminales reales)* **Terminales.** `J1` (pad 12,8 mm) y `J2` (pad 10,6 mm) tienen los centros a 12,8 mm; con terminales de ojo reales M6/M5 pueden chocar entre sí. El pad de `J2` queda a 0,62 mm del borde. *Por verificar con los terminales elegidos.*
 5. **Plano de +3,3 V (In2) fragmentado** en 9 islas (4 en la versión generada) por las señales que cruzan In2. Hoy todas las islas tienen una vía de +3,3 V y la conectividad se sostiene con pistas de 0,5 mm en F/B, pero el plano ya no es un plano. GND (In1) sigue en una sola isla.
@@ -26,3 +26,7 @@ Revisión de `placa-master/placa-master.kicad_pcb` tal como quedó tras los ajus
 8. ✅ *(corregido 31 oct: `LINK_5V` a 0,5 mm salvo el rodeo junto al pad 2 de `U7`, que sigue a 0,25 mm por espaciado)* **Anchos:** `LINK_5V` va a 0,25 mm (alimenta el LDO y el ESP32 a través de `D6`); conviene 0,5 mm. `SDA`/`SCL` a 0,25 mm están bien.
 9. **Serigrafía:** siguen los 42/31/12 avisos de la celda dorada (rótulos de 0,7 mm; mínimo recomendado de JLCPCB 1,0 mm).
 10. **Pendiente de definir:** fusible `F1`, TVS, conectores `MANUALk`/`OUTk`, y confirmar de qué lado queda el USB del devkit (hoy `VIN` está a la izquierda, junto al borde).
+
+## Qué pasó a la celda dorada (31 oct)
+
+Se llevaron de la celda 1 de la master a `celda/celda.kicad_pcb`: las dos tiras de +12 V de 9 mm con sus conexiones de 0,25 mm; el reruteo de `Net-(Q4-C)` y `Net-(U1B--)`; el desplazamiento de las vías que quedaban bajo las tiras (`ESP32_OUT3`/`OUT4`, `MANUAL3`/`MANUAL4`, `FALLA1`/`FALLA2` y una vía de `GND`). No se llevó el ruteo hacia las huellas de la raíz. La celda dorada queda con 22 violaciones (antes 22) y 1 conexión abierta (la tira izquierda y la derecha solo se unen en el tronco de la placa).
