@@ -28,8 +28,8 @@ import pcbnew
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOARDS = {
-    "master": dict(cells=[1, 2, 3], cols=3),
-    "slave": dict(cells=[4, 5, 6, 7], cols=2),
+    "master": dict(cells=[1, 2, 3], cols=1),
+    "slave": dict(cells=[4, 5, 6, 7], cols=1),
 }
 GLOBAL_NETS = ("GND", "+3.3V", "+12V")
 mm, F = pcbnew.ToMM, pcbnew.FromMM
@@ -129,7 +129,7 @@ def content_bbox(board):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("board", choices=sorted(BOARDS))
-    ap.add_argument("--cols", type=int, help="celdas por fila (por defecto: master 3, slave 2)")
+    ap.add_argument("--cols", type=int, help="celdas por fila (por defecto 1: las celdas van en columna)")
     ap.add_argument("--sep", type=float, default=3.0, help="separación entre celdas en mm (por defecto 3)")
     ap.add_argument("--origen", default="10,10", help="esquina superior izquierda de la primera celda, mm")
     ap.add_argument("-o", dest="out")
