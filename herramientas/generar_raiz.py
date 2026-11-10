@@ -10,7 +10,10 @@ Uso: generar_raiz.py {master|slave} [directorio_salida]
 - Coloca A1/U4 (master) o U5 + bloque de poder (slave) tomados de `legacy/`,
   etiqueta solo los pines del reparto de E/S (docs/asignacion-pines.md) y añade el
   conector de enlace `J10` con las mismas etiquetas en ambas placas.
-- NO cablea alimentación ni I²C de los MCP (SDA/SCL solo llegan al ESP32 y al conector).
+- Alimentación e I²C de los MCP, bloque de poder y bornes: ver `build()`.
+- Slave: los canales 25..28 (celda 7) no se amarran a +3,3 V sino a `3V3_IGN`, un interruptor P-MOS
+  de +3,3 V comandado por la línea de 12 V de la llave (borne `J3`, fusible, diodo y divisor de base).
+  Se mantiene el OR con `MANUALk`.
 """
 import json
 import math
@@ -27,6 +30,8 @@ OLD_ROOT = "6451a64b-df92-4e59-b073-88385097038f"   # raíz del monolito (legacy
 CELL_SHEET_UUID = "7ac4191c-7220-47a0-be32-4085e2ecb618"
 CELL_ROOT_UUID = "6451a64b-df92-4e59-b073-88385097038f"  # raíz del proyecto celda
 TOTAL_DIRECTOS = range(20, 29)  # canales 20..28: salida directa, siempre en alto
+IGN_CANALES = range(25, 29)     # de las directas, las que solo se activan con la línea de 12 V de la llave (IGN)
+STOCK_SYM = "/usr/share/kicad/symbols"
 
 # (pin del ESP32 -> red)  /  (pin del MCP -> red)
 ESP32_MASTER = {
@@ -159,6 +164,19 @@ def build(board, outdir):
     conn_sym = cl[cs:balanced(cl, cs)].replace('(symbol "Conn_01x14"', '(symbol "Connector_Generic:Conn_01x14"', 1)
     conn_sym = "\t" + conn_sym.lstrip("\t")
     lib_text = lib_text[:-1].rstrip() + "\n\t\t" + conn_sym.strip() + "\n\t)"
+    if board == "slave":
+        for libfile, name in (("Transistor_FET", "AO3401A"), ("Device", "D")):
+            sl = open(f"{STOCK_SYM}/{libfile}.kicad_sym").read()
+            si = sl.index('\t(symbol "%s"\n' % name)
+            sym = sl[si:balanced(sl, si + 1)]
+            ext = re.search(r'\(extends "([^"]+)"\)', sym)
+            if ext:      # los esquemáticos embeben el símbolo aplanado (sin "extends")
+                pi = sl.index('\t(symbol "%s"\n' % ext.group(1))
+                datasheet = re.search(r'\(property "Datasheet" "([^"]*)"', sym).group(1)
+                sym = sl[pi:balanced(sl, pi + 1)].replace(ext.group(1), name)
+                sym = re.sub(r'\(property "Datasheet" "[^"]*"', '(property "Datasheet" "%s"' % datasheet, sym, count=1)
+            sym = sym.replace('(symbol "%s"' % name, '(symbol "%s:%s"' % (libfile, name), 1)
+            lib_text = lib_text[:-1].rstrip() + "\n\t\t" + sym.strip() + "\n\t)"
     pins_esp = LibPins(get_lib(lib_text, "fusilera:ESP32_DevKit_30pin"))
     pins_mcp = LibPins(get_lib(lib_text, "Interface_Expansion:MCP23017x-x-SO"))
     pins_conn = LibPins(get_lib(lib_text, "Connector_Generic:Conn_01x14"))
@@ -206,7 +224,15 @@ def build(board, outdir):
                 left = base in ("ESP32_OUT", "MANUAL")
                 xe = x - 2.54 if left else x + 2.54
                 body += wire(xe, y, x, y) + label(net, xe, y, left)
-        if directos:
+        if directos and any(4 * (k - 1) + j in IGN_CANALES for j in range(1, 5)):
+            assert all(4 * (k - 1) + j in IGN_CANALES for j in range(1, 5)), "una celda no puede mezclar canales IGN y +3,3 V"
+            ytop = min(directos)
+            body += wire(63.5, ytop, 63.5, ytop - 2.54) + label("3V3_IGN", 63.5, ytop - 2.54, False).replace("(at 63.5 %s 0)" % fm(ytop - 2.54), "(at 63.5 %s 90)" % fm(ytop - 2.54))
+            if len(directos) > 1:
+                body += wire(63.5, min(directos), 63.5, max(directos))
+                for y in sorted(directos)[1:-1]:
+                    body += junction(63.5, y)
+        elif directos:
             tpl = reseed_uuids(legacy_symbol("#PWR094"))
             ytop = min(directos)
             pwr_n += 1
@@ -376,6 +402,44 @@ def build(board, outdir):
         body += wire(36.83, 25.4, 36.83, 27.94) + psym("+12V", 36.83, 25.4)
         body += wire(222.25, 60.96, 222.25, 63.5) + psym("+3.3V", 222.25, 60.96)
         body += flag("+12V", 60.96, 15.24)
+        # --- interruptor de +3,3 V comandado por la línea de 12 V de la llave (IGN) --------------
+        # IGN -> fusible -> diodo -> R 100k -> base de Q902 (R 47k a GND); Q902 baja la puerta de Q901
+        # (P-MOS, R 100k a +3,3 V) y Q901 entrega +3,3 V a 3V3_IGN, que fija en alto ESP32_OUT25..28.
+        def new_part(lib_id, ref, value, fp, x, y, lp):
+            b = ('\t(symbol\n\t\t(lib_id "%s")\n\t\t(at %s %s 0)\n\t\t(unit 1)\n\t\t(body_style 1)\n\t\t(exclude_from_sim no)\n'
+                 '\t\t(in_bom yes)\n\t\t(on_board yes)\n\t\t(in_pos_files yes)\n\t\t(dnp no)\n\t\t(uuid "%s")\n' % (
+                     lib_id, fm(x), fm(y), uuid.uuid5(uuid.UUID(root), "sym:" + ref)))
+            fx = '(effects\n\t\t\t(font\n\t\t\t\t(size 1.27 1.27)\n\t\t\t)%s\n\t\t)'
+            for name, val, dy, hide in (("Reference", ref, -3.81, False), ("Value", value, 3.81, False),
+                                        ("Footprint", fp, 0, True), ("Datasheet", "~", 0, True)):
+                b += '\t\t(property "%s" "%s"\n\t\t\t(at %s %s 0)\n\t\t\t%s(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n' % (
+                    name, val, fm(x + 3.81), fm(y + dy), "(hide yes)\n\t\t\t" if hide else "")
+            for n in sorted(lp.pins):
+                b += '\t\t(pin "%d"\n\t\t\t(uuid "%s")\n\t\t)\n' % (n, uid())
+            b += '\t\t(instances\n\t\t\t(project "%s"\n\t\t\t\t(path "/%s"\n\t\t\t\t\t(reference "%s")\n\t\t\t\t\t(unit 1)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n\t)\n' % (proj, root, ref)
+            return b
+
+        pins_q = LibPins(get_lib(lib_text, "Transistor_BJT:MMBT2222A"))
+        pins_p = LibPins(get_lib(lib_text, "Transistor_FET:AO3401A"))
+        pins_dd = LibPins(get_lib(lib_text, "Device:D"))
+        pins_f = LibPins(get_lib(lib_text, "Device:Fuse"))
+        s, rot = part("J2", "J3", 266.7, 254.0, "borne M3 IGN")
+        body += s.replace("MountingHole_5.3mm_M5_Pad", "MountingHole_3.2mm_M3_Pad") + tie(pins_term, 266.7, 254.0, {1: "IGN"}, rot=rot)
+        s, rot = part("F2", "F901", 292.1, 254.0, "500mA")      # F2 viene girado 90°: aquí se coloca sin giro
+        s = re.sub(r"\(at 292\.1 254 90\)", "(at 292.1 254 0)", s, count=1)
+        body += s + tie(pins_f, 292.1, 254.0, {1: "IGN", 2: "IGN_F"})
+        body += new_part("Device:D", "D901", "1N4148W", "Diode_SMD:D_SOD-123", 317.5, 254.0, pins_dd) \
+            + tie(pins_dd, 317.5, 254.0, {2: "IGN_F", 1: "IGN_D"})
+        for ref, x, y, v, mp in (("R904", 342.9, 254.0, "100k", {1: "IGN_D", 2: "IGN_B"}),
+                                 ("R905", 368.3, 254.0, "47k", {1: "IGN_B", 2: "GND"}),
+                                 ("R903", 317.5, 228.6, "100k", {1: "+3.3V", 2: "GATE_SW"})):
+            s, rot = part("R17", ref, x, y, v)
+            body += s + tie(pins_r, x, y, mp, rot=rot)
+        body += new_part("Transistor_BJT:MMBT2222A", "Q902", "MMBT2222A", "Package_TO_SOT_SMD:SOT-23", 292.1, 228.6, pins_q) \
+            + tie(pins_q, 292.1, 228.6, {1: "IGN_B", 2: "GND", 3: "GATE_SW"})
+        body += new_part("Transistor_FET:AO3401A", "Q901", "AO3401A", "Package_TO_SOT_SMD:SOT-23", 342.9, 228.6, pins_p) \
+            + tie(pins_p, 342.9, 228.6, {1: "GATE_SW", 2: "+3.3V", 3: "3V3_IGN"})
+        body += flag("3V3_IGN", 368.3, 228.6, True)
     # --- conector de enlace ---------------------------------------------
     jx, jy = 320.04, 120.65
     j10 = ('\t(symbol\n\t\t(lib_id "Connector_Generic:Conn_01x14")\n\t\t(at %s %s 0)\n\t\t(unit 1)\n\t\t(body_style 1)\n\t\t(exclude_from_sim no)\n'

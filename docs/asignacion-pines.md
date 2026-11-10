@@ -25,7 +25,8 @@ Regla de fondo: `GPA7` y `GPB7` de un MCP23017 solo pueden ser salidas; cada MCP
 |---|---|
 | `ESP32_OUT13`, `ESP32_OUT14` | `U5` `GPA7`, `GPB7` |
 | `ESP32_OUT15…19` | conector (vienen de `U4`) |
-| `ESP32_OUT20…28` | +3,3 V (salidas directas, siempre en alto) |
+| `ESP32_OUT20…24` | +3,3 V (salidas directas, siempre en alto) |
+| `ESP32_OUT25…28` | `3V3_IGN` (salidas directas que solo se activan con la línea de 12 V de la llave; ver `docs/ign-llave.md`) |
 | `FALLA13…19` | `U5` `GPA0…GPA6` |
 | `FALLA20…26` | `U5` `GPB0…GPB6` |
 | `FALLA27`, `FALLA28` | conector (hacia `U4`) |

@@ -16,3 +16,7 @@ Ideas a evaluar (no decididas): pull-down de cada línea en el lado de la slave,
 - 1 kΩ en serie en cada línea `FALLA` hacia el micro (los nodos `FALLA` cuelgan del nodo de realimentación del latch).
 - Ancho y separación de 0,2 mm en las pistas heredadas frente al mínimo de JLC para 2 oz (8 mil = 0,2032 mm).
 - Presupuesto de corriente de 3,3 V de las 28 celdas (para decidir cuánto margen da cada AP2112K).
+
+## 2. Reinicio del latch con la lógica siempre en batería (anotado 5 nov, por hablar con el cliente)
+
+Ver `docs/ign-llave.md`: el latch ya no se reinicia al apagar el carro. Propuestas: reinicio por flanco de IGN, línea `LATCH_RST` desde el ESP32 y botón de servicio.
