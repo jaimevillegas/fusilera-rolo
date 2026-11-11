@@ -318,6 +318,9 @@ def main():
         add_track(xr + dx_col, ybase, xr + dx_col, ytr - TRONCO_CHAFLAN, w)
         stats["pistas de tronco de +12 V"] += 4
         j1 = next((f for f in bornes if f.GetReference() == "J1"), None)
+        if pin2net.get(("J1", "1")) not in (None, "+12V"):
+            print("Aviso: J1 está en la red %s (hay fusible F1 entre el borne y las tiras): el tronco de +12 V que dibuja "
+                  "este script toca el pad de J1 y dará un corto; hay que partir el cobre en KiCad." % pin2net[("J1", "1")])
         j2 = next((f for f in bornes if f.GetReference() == "J2"), None)
         if j1 is not None:
             j1.SetPosition(pcbnew.VECTOR2I(F(xl + dx_col), F(ytr)))

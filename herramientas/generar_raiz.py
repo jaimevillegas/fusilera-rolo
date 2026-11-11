@@ -10,6 +10,8 @@ Uso: generar_raiz.py {master|slave} [directorio_salida]
 - Coloca A1/U4 (master) o U5 + bloque de poder (slave) tomados de `legacy/`,
   etiqueta solo los pines del reparto de E/S (docs/asignacion-pines.md) y añade el
   conector de enlace `J10` con las mismas etiquetas en ambas placas.
+- Conectores de E/S hacia el arnés: `J4` (salidas `OUTk`, Mini-Fit Jr 2 × n) y `J5` (`MANUALk` + 3,3 V + GND,
+  Micro-Fit 3.0), uno de cada por placa, para cables internos de caja.
 - Alimentación e I²C de los MCP, bloque de poder y bornes: ver `build()`.
 - Slave: los canales 25..28 (celda 7) no se amarran a +3,3 V sino a `3V3_IGN`, un interruptor P-MOS
   de +3,3 V comandado por la línea de 12 V de la llave (borne `J3`, fusible, diodo y divisor de base).
@@ -164,8 +166,13 @@ def build(board, outdir):
     conn_sym = cl[cs:balanced(cl, cs)].replace('(symbol "Conn_01x14"', '(symbol "Connector_Generic:Conn_01x14"', 1)
     conn_sym = "\t" + conn_sym.lstrip("\t")
     lib_text = lib_text[:-1].rstrip() + "\n\t\t" + conn_sym.strip() + "\n\t)"
+    n_out = len(cfg["cells"]) * 4          # salidas BTS (= manuales) de la placa
+    pairs = (n_out // 2, (n_out + 2 + 1) // 2)    # filas de J4 (n_out pines) y de J5 (n_out + 3,3 V + GND)
+    stock = [("Connector_Generic", "Conn_02x%02d_Top_Bottom" % n) for n in pairs]
     if board == "slave":
-        for libfile, name in (("Transistor_FET", "AO3401A"), ("Device", "D")):
+        stock += [("Transistor_FET", "AO3401A"), ("Device", "D")]
+    if True:
+        for libfile, name in stock:
             sl = open(f"{STOCK_SYM}/{libfile}.kicad_sym").read()
             si = sl.index('\t(symbol "%s"\n' % name)
             sym = sl[si:balanced(sl, si + 1)]
@@ -339,6 +346,21 @@ def build(board, outdir):
     pins_d = LibPins(get_lib(lib_text, "Device:D_Schottky"))
     pins_ldo = LibPins(get_lib(lib_text, "Regulator_Linear:AP2112K-3.3"))
     pins_term = LibPins(get_lib(lib_text, "Connector:Screw_Terminal_01x01"))
+    pins_f = LibPins(get_lib(lib_text, "Device:Fuse"))
+
+    def new_part(lib_id, ref, value, fp, x, y, lp):
+        b = ('\t(symbol\n\t\t(lib_id "%s")\n\t\t(at %s %s 0)\n\t\t(unit 1)\n\t\t(body_style 1)\n\t\t(exclude_from_sim no)\n'
+             '\t\t(in_bom yes)\n\t\t(on_board yes)\n\t\t(in_pos_files yes)\n\t\t(dnp no)\n\t\t(uuid "%s")\n' % (
+                 lib_id, fm(x), fm(y), uuid.uuid5(uuid.UUID(root), "sym:" + ref)))
+        fx = '(effects\n\t\t\t(font\n\t\t\t\t(size 1.27 1.27)\n\t\t\t)%s\n\t\t)'
+        for name, val, dy, hide in (("Reference", ref, -3.81, False), ("Value", value, 3.81, False),
+                                    ("Footprint", fp, 0, True), ("Datasheet", "~", 0, True)):
+            b += '\t\t(property "%s" "%s"\n\t\t\t(at %s %s 0)\n\t\t\t%s(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n' % (
+                name, val, fm(x + 3.81), fm(y + dy), "(hide yes)\n\t\t\t" if hide else "")
+        for n in sorted(lp.pins):
+            b += '\t\t(pin "%d"\n\t\t\t(uuid "%s")\n\t\t)\n' % (n, uid())
+        b += '\t\t(instances\n\t\t\t(project "%s"\n\t\t\t\t(path "/%s"\n\t\t\t\t\t(reference "%s")\n\t\t\t\t\t(unit 1)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n\t)\n' % (proj, root, ref)
+        return b
 
     # --- microcontrolador / MCP ----------------------------------------
     if board == "master":
@@ -366,7 +388,10 @@ def build(board, outdir):
         body += s + tie(pins_d, 266.7, 228.6, {2: "LINK_5V", 1: "VIN_ESP32"}, rot=rot)
         # entradas de +12 V y masa propias de la placa
         s, rot = part("J1", "J1", 266.7, 254.0)
-        body += s + tie(pins_term, 266.7, 254.0, {1: "+12V"}, rot=rot)
+        body += s + tie(pins_term, 266.7, 254.0, {1: "VIN_BORNE"}, rot=rot)
+        # fusible master del cliente (portafusibles de 40 A sobre dos pestañas Faston .187) entre el borne y las tiras
+        body += new_part("Device:Fuse", "F1", "Portafusibles 40A", "fusilera:FuseHolder_2xFaston187_P4.70mm", 292.1, 279.4, pins_f) \
+            + tie(pins_f, 292.1, 279.4, {1: "VIN_BORNE", 2: "+12V"})
         s, rot = part("J2", "J2", 266.7, 266.7)
         body += s + tie(pins_term, 266.7, 266.7, {1: "GND"}, rot=rot)
         for net, fx, local in (("+12V", 292.1, False), ("GND", 304.8, False), ("LINK_5V", 317.5, True), ("VIN_ESP32", 330.2, True)):
@@ -379,7 +404,8 @@ def build(board, outdir):
         s, _ = part("C6", "C6", 254.0, 190.5)        # desacoplo de U5
         body += s + tie(pins_c, 254.0, 190.5, {1: "+3.3V", 2: "GND"})
         # bloque de poder del monolito (y < 100). D6 y su salida VIN_ESP32 pasan a la master.
-        skip_wire = {(203.2, 50.8), (209.55, 50.8)}
+        skip_wires = [{(203.2, 50.8), (209.55, 50.8)},
+                      {(36.83, 27.94), (39.37, 27.94)}]   # el segundo es el cable J1-F2 (se corta para insertar F1)
         for n, b in blocks:
             if n == "symbol":
                 ref = re.search(r'\(property "Reference" "([^"]+)"', b).group(1)
@@ -394,30 +420,20 @@ def build(board, outdir):
                     continue
                 if n == "wire":
                     xy = {(float(a), float(c)) for a, c in re.findall(r"\(xy ([-\d.]+) ([-\d.]+)\)", b)}
-                    if xy == skip_wire:
+                    if xy in skip_wires:
                         continue
                 body += b + "\n"
         # uniones del bloque: riel de 5 V hacia el conector, Vbb a +12V y salida del LDO a +3.3V
         body += lab("LINK_5V", 195.58, 50.8, 1, 0)
-        body += wire(36.83, 25.4, 36.83, 27.94) + psym("+12V", 36.83, 25.4)
+        body += wire(36.83, 27.94, 36.83, 25.4) + lab("VIN_BORNE", 36.83, 25.4, 0, -1)       # borne J1
+        body += wire(39.37, 27.94, 39.37, 25.4) + psym("+12V", 39.37, 25.4)                  # F2 (lógica) cuelga después de F1
+        body += new_part("Device:Fuse", "F1", "Portafusibles 40A", "fusilera:FuseHolder_2xFaston187_P4.70mm", 25.4, 55.88, pins_f) \
+            + tie(pins_f, 25.4, 55.88, {1: "VIN_BORNE", 2: "+12V"})
         body += wire(222.25, 60.96, 222.25, 63.5) + psym("+3.3V", 222.25, 60.96)
         body += flag("+12V", 60.96, 15.24)
         # --- interruptor de +3,3 V comandado por la línea de 12 V de la llave (IGN) --------------
         # IGN -> fusible -> diodo -> R 100k -> base de Q902 (R 47k a GND); Q902 baja la puerta de Q901
         # (P-MOS, R 100k a +3,3 V) y Q901 entrega +3,3 V a 3V3_IGN, que fija en alto ESP32_OUT25..28.
-        def new_part(lib_id, ref, value, fp, x, y, lp):
-            b = ('\t(symbol\n\t\t(lib_id "%s")\n\t\t(at %s %s 0)\n\t\t(unit 1)\n\t\t(body_style 1)\n\t\t(exclude_from_sim no)\n'
-                 '\t\t(in_bom yes)\n\t\t(on_board yes)\n\t\t(in_pos_files yes)\n\t\t(dnp no)\n\t\t(uuid "%s")\n' % (
-                     lib_id, fm(x), fm(y), uuid.uuid5(uuid.UUID(root), "sym:" + ref)))
-            fx = '(effects\n\t\t\t(font\n\t\t\t\t(size 1.27 1.27)\n\t\t\t)%s\n\t\t)'
-            for name, val, dy, hide in (("Reference", ref, -3.81, False), ("Value", value, 3.81, False),
-                                        ("Footprint", fp, 0, True), ("Datasheet", "~", 0, True)):
-                b += '\t\t(property "%s" "%s"\n\t\t\t(at %s %s 0)\n\t\t\t%s(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n' % (
-                    name, val, fm(x + 3.81), fm(y + dy), "(hide yes)\n\t\t\t" if hide else "")
-            for n in sorted(lp.pins):
-                b += '\t\t(pin "%d"\n\t\t\t(uuid "%s")\n\t\t)\n' % (n, uid())
-            b += '\t\t(instances\n\t\t\t(project "%s"\n\t\t\t\t(path "/%s"\n\t\t\t\t\t(reference "%s")\n\t\t\t\t\t(unit 1)\n\t\t\t\t)\n\t\t\t)\n\t\t)\n\t)\n' % (proj, root, ref)
-            return b
 
         pins_q = LibPins(get_lib(lib_text, "Transistor_BJT:MMBT2222A"))
         pins_p = LibPins(get_lib(lib_text, "Transistor_FET:AO3401A"))
@@ -440,6 +456,16 @@ def build(board, outdir):
         body += new_part("Transistor_FET:AO3401A", "Q901", "AO3401A", "Package_TO_SOT_SMD:SOT-23", 342.9, 228.6, pins_p) \
             + tie(pins_p, 342.9, 228.6, {1: "GATE_SW", 2: "+3.3V", 3: "3V3_IGN"})
         body += flag("3V3_IGN", 368.3, 228.6, True)
+    # --- conectores de E/S hacia el arnés: J4 salidas BTS (Mini-Fit Jr) y J5 manuales (Micro-Fit 3.0) ----
+    chs = [4 * (k - 1) + j for k in cfg["cells"] for j in range(1, 5)]
+    fp_j4 = "Connector_Molex:Molex_Mini-Fit_Jr_5569-%02dA2_2x%02d_P4.20mm_Horizontal" % (n_out, n_out // 2)
+    fp_j5 = "Connector_Molex:Molex_Micro-Fit_3.0_43045-%02d00_2x%02d_P3.00mm_Horizontal" % (n_out + 2, (n_out + 2) // 2)
+    pins_j4 = LibPins(get_lib(lib_text, "Connector_Generic:Conn_02x%02d_Top_Bottom" % pairs[0]))
+    pins_j5 = LibPins(get_lib(lib_text, "Connector_Generic:Conn_02x%02d_Top_Bottom" % pairs[1]))
+    body += new_part("Connector_Generic:Conn_02x%02d_Top_Bottom" % pairs[0], "J4", "Salidas_BTS", fp_j4, 355.6, 63.5, pins_j4) \
+        + tie(pins_j4, 355.6, 63.5, {i + 1: "OUT%d" % c for i, c in enumerate(chs)})
+    body += new_part("Connector_Generic:Conn_02x%02d_Top_Bottom" % pairs[1], "J5", "Manuales", fp_j5, 355.6, 114.3, pins_j5) \
+        + tie(pins_j5, 355.6, 114.3, {**{i + 1: "MANUAL%d" % c for i, c in enumerate(chs)}, n_out + 1: "+3.3V", n_out + 2: "GND"})
     # --- conector de enlace ---------------------------------------------
     jx, jy = 320.04, 120.65
     j10 = ('\t(symbol\n\t\t(lib_id "Connector_Generic:Conn_01x14")\n\t\t(at %s %s 0)\n\t\t(unit 1)\n\t\t(body_style 1)\n\t\t(exclude_from_sim no)\n'

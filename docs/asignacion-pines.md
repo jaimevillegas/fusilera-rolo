@@ -40,4 +40,6 @@ Hecho en ambos esquemáticos raíz:
 - **Master**: entrada de +12 V (`J1`) y masa (`J2`), LDO 3,3 V (`U7`, `C14`, `C15`) alimentado desde `LINK_5V`, y `D6` entre `LINK_5V` y `VIN` del ESP32 (anti-retroalimentación USB). El `3V3` del devkit queda sin conectar.
 - **Slave**: el bloque de poder del monolito sin `D6`; el riel de 5 V sale por `LINK_5V` al conector, `VBB` se une a `+12V` y `V3V3_OUT` a `+3.3V`.
 
-Pendiente: conectores `MANUALk` y `OUTk` (siguen como etiquetas sueltas), fusible master (`F1`, valor por preguntar al cliente) y TVS de Vbb, `EN` del ESP32 (queda sin conectar: el devkit ya trae su pull-up), tiras de +12 V del PCB (se hacen al final con todo armado).
+Pendiente: fusible master (`F1`, valor por preguntar al cliente) y TVS de Vbb, `EN` del ESP32 (queda sin conectar: el devkit ya trae su pull-up), tiras de +12 V del PCB (se hacen al final con todo armado).
+
+Conectores `J4` (salidas `OUTk`) y `J5` (`MANUALk`, +3,3 V y GND) hacia el arnés: ver `docs/conectores-io.md`.
