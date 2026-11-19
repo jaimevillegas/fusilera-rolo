@@ -26,6 +26,10 @@ Por dimensionar:
 
 Para todas las señales digitales de baja corriente propongo la familia **JST XH**: la misma que usa `J10` de las placas. Tiene versiones de 2, 3, 4… hasta 16 y más pines, 2,5 mm de paso, polarizada, 3 A y 250 V por pin. Ejemplo: [B4B-XH-A (LF)(SN), 4 pines, LCSC C144395](https://www.lcsc.com/product-detail/C144395.html) y [en JLCPCB](https://jlcpcb.com/partdetail/B4B-XH-A(LF)(SN)/C144395) (pieza extendida, THT por soldadura de ola). El resto de pines (2P, 8P, 12P…) son la misma familia: *no pude confirmar su disponibilidad en JLCPCB, hay que revisarla*. El lado cable es la carcasa `XHP-n` con terminales `SXH-001T-P0.6` (*números por verificar en la hoja de JST*).
 
+## Contorno y fijación
+
+Placa de **55,55 × 39,8 mm** con **4 orificios M3** (taladro de 3,2 mm, huella `MountingHole_3.2mm_M3`, sin plaquear) en las esquinas, a 3,5 mm de cada borde: `H1`…`H4`. Se ensanchó respecto a los 48 mm originales porque `J1` y `J3` ocupaban dos esquinas (se probó con 62 mm y se recortó a 55,55 mm moviendo `J1`, `J2` y `F2`); los planos de GND cubren todo el ancho. Las huellas de los orificios son solo del PCB (no están en el esquemático).
+
 ## Pendiente
 - Colocar, contornear y rutear el PCB de dos capas.
 - Confirmar tensión del `CB1`, valor del TVS y del NTC, y la I²t del fusible.
