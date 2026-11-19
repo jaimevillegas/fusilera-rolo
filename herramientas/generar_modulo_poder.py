@@ -5,8 +5,8 @@ Uso: generar_modulo_poder.py [directorio_salida]   (por defecto `modulo-poder/` 
 
 Entrada de 12 V de carro por bornes M3 -> fusible -> NTC limitador de corriente de arranque -> diodo de
 polaridad inversa -> TVS + condensadores de entrada (incluido uno de 10000 uF para aguantar las caídas de
-tensión del arranque) -> buck LM5164 de 5 V -> LDO AP2112K de 3,3 V. Sale por una regleta JST XH de 5 pines
-(5 V, GND, 3,3 V, GND, PGOOD).
+tensión del arranque) -> buck LM5164 de 5 V -> LDO AP2112K de 3,3 V. Sale por una regleta JST XH de 4 pines
+(5 V, GND, 3,3 V, GND); el PGOOD del LM5164 queda sin conectar.
 
 Crea el esquemático (cableado solo por etiquetas, las redes salen del netlist del bloque de la slave), el
 proyecto y un PCB de dos capas con las huellas dispersas fuera de cualquier contorno: SIN pistas, SIN contorno y
@@ -53,20 +53,19 @@ PARTES = [
     ("R15", "Device:R", "31.6k", "Resistor_SMD:R_0805_2012Metric", 228.6, 114.3, {1: "RON", 2: "GND"}),
     ("L1", "Device:L", "22uH", "Inductor_SMD:L_6.3x6.3_H3", 254.0, 114.3, {1: "SW", 2: "+5V"}),
     ("U6", "Regulator_Switching:LM5164DDA", "LM5164DDA", "Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm", 63.5, 177.8,
-     {1: "GND", 9: "GND", 2: "VIN_D", 3: "EN", 4: "RON", 5: "FB", 6: "PGOOD", 7: "BST", 8: "SW"}),
+     {1: "GND", 9: "GND", 2: "VIN_D", 3: "EN", 4: "RON", 5: "FB", 7: "BST", 8: "SW"}),
     ("C11", "Device:C", "22uF 16V X7R", "Capacitor_SMD:C_1206_3216Metric", 127.0, 177.8, {1: "+5V", 2: "GND"}),
     # LDO de 3,3 V y salida
     ("U7", "Regulator_Linear:AP2112K-3.3", "AP2112K-3.3", SOT + ":SOT-23-5", 165.1, 177.8,
      {1: "+5V", 3: "+5V", 2: "GND", 5: "+3.3V"}),
     ("C14", "Device:C", "1uF", "Capacitor_SMD:C_0805_2012Metric", 190.5, 177.8, {1: "+5V", 2: "GND"}),
     ("C15", "Device:C", "1uF", "Capacitor_SMD:C_0805_2012Metric", 215.9, 177.8, {1: "+3.3V", 2: "GND"}),
-    ("R20", "Device:R", "10k", "Resistor_SMD:R_0805_2012Metric", 241.3, 177.8, {1: "+3.3V", 2: "PGOOD"}),
-    ("J3", "Connector_Generic:Conn_01x05", "Salida_5V_3V3", "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical", 292.1, 177.8,
-     {1: "+5V", 2: "GND", 3: "+3.3V", 4: "GND", 5: "PGOOD"}),
+    ("J3", "Connector_Generic:Conn_01x04", "Salida_5V_3V3", "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", 292.1, 177.8,
+     {1: "+5V", 2: "GND", 3: "+3.3V", 4: "GND"}),
 ]
-NC = {"U7": [4]}
+NC = {"U7": [4], "U6": [6]}
 FLAGS = [("VIN_D", 190.5, 76.2, True), ("+5V", 127.0, 139.7, True), ("GND", 76.2, 76.2, False)]
-STOCK = [("Connector_Generic", "Conn_01x05"), ("Device", "Thermistor_NTC")]
+STOCK = [("Connector_Generic", "Conn_01x04"), ("Device", "Thermistor_NTC")]
 
 
 def build(outdir):

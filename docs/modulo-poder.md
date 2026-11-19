@@ -1,12 +1,12 @@
 # Módulo de poder (`modulo-poder/`)
 
-Placa aparte con el bloque de poder de la slave: entra la tensión del carro (12 V) y sale 5 V y 3,3 V para microcontroladores e integrados. Esquemático, proyecto y PCB de **dos capas** generados con `herramientas/generar_modulo_poder.py`; el PCB trae las 27 huellas **dispersas, sin pistas, sin contorno y sin planos** (el cobre y el contorno los haces tú).
+Placa aparte con el bloque de poder de la slave: entra la tensión del carro (12 V) y sale 5 V y 3,3 V para microcontroladores e integrados. Esquemático, proyecto y PCB de **dos capas** generados con `herramientas/generar_modulo_poder.py`; el PCB trae las 26 huellas **dispersas, sin pistas, sin contorno y sin planos** (el cobre y el contorno los haces tú).
 
 ## Circuito
 
 `J1`/`J2` (bornes M3 de +12 V y GND) → `F2` (fusible 2 A) → `RT1` (NTC limitador de corriente de arranque) → `D4` (Schottky SS36, polaridad inversa) → red `VIN_D`, con `D5` (TVS), `CB1` (10000 µF), `C9` (47 µF 50 V), `C7`/`C8` (2,2 µF 100 V) → `U6` LM5164 (buck, 5 V, 1 A, `L1` 22 µH) → `U7` AP2112K-3.3 (LDO, 3,3 V, 600 mA).
 
-Salida por **`J3`, regleta JST XH de 5 pines**: 1 = +5 V, 2 = GND, 3 = +3,3 V, 4 = GND, 5 = PGOOD (con `R20` de 10 kΩ a +3,3 V). Las redes del bloque son las mismas que las de la slave (se verificó con el netlist); solo cambian lo añadido: `RT1`, `CB1`, `R20`, el pin `PGOOD` y la regleta.
+Salida por **`J3`, regleta JST XH de 4 pines**: 1 = +5 V, 2 = GND, 3 = +3,3 V, 4 = GND. El `PGOOD` del LM5164 queda **sin conectar** (decisión del 19 nov: no sale por la regleta). Las redes del bloque son las mismas que las de la slave (se verificó con el netlist); solo cambian lo añadido: `RT1`, `CB1` y la regleta.
 
 ## Condensador de 10000 µF (`CB1`)
 
@@ -19,8 +19,8 @@ Por dimensionar:
 
 ## Pines de `PGOOD` y `EN` del LM5164
 
-- **`PGOOD`**: salida de colector abierto que se mantiene baja mientras los 5 V no están dentro del margen de regulación y pasa a alta impedancia cuando están bien. Con `R20` queda como señal lógica de 3,3 V: el microcontrolador puede esperar a que `PGOOD` suba antes de arrancar o hacer un reinicio ordenado si la tensión se cae. Está en la regleta (pin 5).
-- **`EN`/UVLO**: habilita el convertidor. `R17`/`R18` forman un divisor desde la entrada que fija a qué tensión de entrada arranca (umbral de subtensión); si se baja ese pin a GND, el buck se apaga. No lo saqué a la regleta; solo serviría para encender/apagar el módulo desde afuera. Se puede agregar un pin.
+- **`PGOOD`**: salida de colector abierto que se mantiene baja mientras los 5 V no están dentro del margen de regulación y pasa a alta impedancia cuando están bien. Queda sin conectar y sin pull-up (se quitó `R20`).
+- **`EN`/UVLO**: habilita el convertidor. `R17`/`R18` forman un divisor desde la entrada que fija a qué tensión de entrada arranca; si se baja ese pin a GND, el buck se apaga. No sale a la regleta.
 
 ## Conector común: JST XH (2,5 mm)
 
