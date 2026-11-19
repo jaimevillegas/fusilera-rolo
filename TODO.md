@@ -53,6 +53,13 @@ Estado al 10 nov 2026. Las casillas marcadas `[x]` están hechas; el contexto de
 - [ ] Contorno `Edge.Cuts` de la celda (119,6 × 48,2 mm frente al contenido real).
 - [ ] Si se toca cobre de una celda en una placa, llevar el cambio a `celda/` y volver a generar la slave (la master tiene ruteo manual y no se regenera).
 
+## Módulo de poder (`modulo-poder/`)
+
+- [ ] Colocar, contornear y rutear el PCB de dos capas (huellas dispersas, sin cobre). Ver `docs/modulo-poder.md`.
+- [ ] Confirmar tensión del condensador de 10000 µF (35 V provisional), TVS (`SMBJ24A` provisional), NTC de arranque (10 Ω provisional) y que `F2` aguanta la I²t.
+- [ ] Decidir si se saca `EN` a la regleta y confirmar la regleta JST XH común (disponibilidad de 2/8/12 pines en JLCPCB).
+- [ ] Decidir si la slave pasa a usar este módulo en lugar de su bloque de poder.
+
 ## Repositorio
 
 - [ ] Etiquetar `main` como `doble-cara-v1`.
