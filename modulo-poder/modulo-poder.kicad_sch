@@ -7220,7 +7220,7 @@
 				)
 			)
 		)
-		(property "Value" "10000uF 35V"
+		(property "Value" "1000uF 35V"
 			(at 194.31 55.88 0)
 			(effects
 				(font
@@ -7228,7 +7228,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D18.0mm_P7.50mm"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 194.31 50.8 0)
 			(hide yes)
 			(effects

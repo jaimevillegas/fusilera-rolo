@@ -4,18 +4,18 @@ Placa aparte con el bloque de poder de la slave: entra la tensión del carro (12
 
 ## Circuito
 
-`J1`/`J2` (bornes M3 de +12 V y GND) → `F2` (fusible 2 A) → `RT1` (NTC limitador de corriente de arranque) → `D4` (Schottky SS36, polaridad inversa) → red `VIN_D`, con `D5` (TVS), `CB1` (10000 µF), `C9` (47 µF 50 V), `C7`/`C8` (2,2 µF 100 V) → `U6` LM5164 (buck, 5 V, 1 A, `L1` 22 µH) → `U7` AP2112K-3.3 (LDO, 3,3 V, 600 mA).
+`J1`/`J2` (bornes M3 de +12 V y GND) → `F2` (fusible 2 A) → `RT1` (NTC limitador de corriente de arranque) → `D4` (Schottky SS36, polaridad inversa) → red `VIN_D`, con `D5` (TVS), `CB1` (1000 µF), `C9` (47 µF 50 V), `C7`/`C8` (2,2 µF 100 V) → `U6` LM5164 (buck, 5 V, 1 A, `L1` 22 µH) → `U7` AP2112K-3.3 (LDO, 3,3 V, 600 mA).
 
 Salida por **`J3`, regleta JST XH de 4 pines**: 1 = +5 V, 2 = GND, 3 = +3,3 V, 4 = GND. El `PGOOD` del LM5164 queda **sin conectar** (decisión del 19 nov: no sale por la regleta). Las redes del bloque son las mismas que las de la slave (se verificó con el netlist); solo cambian lo añadido: `RT1`, `CB1` y la regleta.
 
-## Condensador de 10000 µF (`CB1`)
+## Condensador de 1000 µF (`CB1`)
 
-Va **después** del diodo `D4` (no en el borne), para que durante una caída de tensión del arranque el diodo impida que el condensador se descargue hacia el carro y sostenga la entrada del buck. Estimación: de 12 V a 6 V un condensador de 10 mF entrega ≈ 0,54 J, lo que da del orden de 90 ms a plena carga del buck y bastante más con la carga real. El LM5164 deja de regular por debajo de ≈ 6 V.
+Va **después** del diodo `D4` (no en el borne), para que durante una caída de tensión del arranque el diodo impida que el condensador se descargue hacia el carro y sostenga la entrada del buck. (Cambiado de 10000 µF a 1000 µF el 19 nov.) Estimación: de 12 V a 6 V un condensador de 1 mF entrega ≈ 0,054 J, lo que da del orden de 9 ms a plena carga del buck (≈ 6 W de entrada) y unos 50 ms con una carga de 1 W. Es una décima parte de lo que daba el de 10000 µF; las caídas del arranque suelen durar decenas de milisegundos, así que conviene validarlo con la carga real. El LM5164 deja de regular por debajo de ≈ 6 V.
 
 Por dimensionar:
-- **Tensión del condensador:** puesto como 35 V (huella radial D18 mm, paso 7,5 mm, ≈ 18 × 40 mm). Con 25 V sería más pequeño, pero debe resistir el recorte del TVS.
+- **Tensión y huella del condensador:** 35 V, huella radial **D10 mm, paso 5,0 mm** (`CP_Radial_D10.0mm_P5.00mm`), la medida habitual de un 1000 µF / 35 V (ejemplo: Rubycon 35PK1000MEFC10X20, 10 × 20 mm, paso 5 mm; *comprobar la altura real en la hoja del modelo elegido*). Se giró 270° dejando el pad + donde estaba, para no mover el ruteo.
 - **TVS `D5`:** puesto `SMBJ24A` (provisional, por verificar); recorta ≈ 39 V.
-- **Corriente de arranque:** al conectar la batería un condensador de 10 mF absorbe un pico enorme; sin límite fundiría el fusible o haría chispa en el borne. Por eso añadí `RT1` (NTC de 10 Ω, 3 A, provisional). Hay que comprobar que `F2` (1206, 2 A) aguanta la I²t de la carga del condensador; si no, usar fusible lento o ajustar el NTC.
+- **Corriente de arranque:** al conectar la batería el condensador absorbe un pico grande; sin límite, con una fuente de ≈ 30 mΩ la I²t de la carga sería del orden de 2 A²s (estimación), muy por encima de lo que aguanta un fusible 1206 de 2 A. Por eso `RT1` (NTC de 10 Ω, 3 A, provisional) reduce esa I²t a ≈ 0,007 A²s. Comprobar con el fusible elegido.
 
 ## Pines de `PGOOD` y `EN` del LM5164
 
@@ -33,5 +33,5 @@ Placa de **55,55 × 39,8 mm** con **4 orificios M3** (taladro de 3,2 mm, huella 
 ## Pendiente
 - Colocar, contornear y rutear el PCB de dos capas.
 - Confirmar tensión del `CB1`, valor del TVS y del NTC, y la I²t del fusible.
-- Medir la altura (el condensador de 10000 µF es la pieza más alta) y ajustar la huella si se cambia de modelo.
+- Medir la altura (el condensador `CB1` es la pieza más alta) y ajustar la huella si se cambia de modelo.
 - Si el módulo sustituye al bloque de la slave, rehacer entonces la slave (por ahora no se toca).

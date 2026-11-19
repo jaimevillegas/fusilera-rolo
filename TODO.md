@@ -56,7 +56,7 @@ Estado al 10 nov 2026. Las casillas marcadas `[x]` están hechas; el contexto de
 ## Módulo de poder (`modulo-poder/`)
 
 - [ ] Colocar, contornear y rutear el PCB de dos capas (huellas dispersas, sin cobre). Ver `docs/modulo-poder.md`.
-- [ ] Confirmar tensión del condensador de 10000 µF (35 V provisional), TVS (`SMBJ24A` provisional), NTC de arranque (10 Ω provisional) y que `F2` aguanta la I²t.
+- [ ] Confirmar tensión del condensador de 1000 µF (35 V provisional; huella D10 mm paso 5 mm), que 1000 µF sostiene la entrada en el arranque, TVS (`SMBJ24A` provisional), NTC de arranque (10 Ω provisional) y que `F2` aguanta la I²t.
 - [ ] Decidir si se saca `EN` a la regleta y confirmar la regleta JST XH común (disponibilidad de 2/8/12 pines en JLCPCB).
 - [ ] Decidir si la slave pasa a usar este módulo en lugar de su bloque de poder.
 

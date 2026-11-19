@@ -4,7 +4,7 @@
 Uso: generar_modulo_poder.py [directorio_salida]   (por defecto `modulo-poder/` en la raíz del repositorio)
 
 Entrada de 12 V de carro por bornes M3 -> fusible -> NTC limitador de corriente de arranque -> diodo de
-polaridad inversa -> TVS + condensadores de entrada (incluido uno de 10000 uF para aguantar las caídas de
+polaridad inversa -> TVS + condensadores de entrada (incluido uno de 1000 uF para aguantar las caídas de
 tensión del arranque) -> buck LM5164 de 5 V -> LDO AP2112K de 3,3 V. Sale por una regleta JST XH de 4 pines
 (5 V, GND, 3,3 V, GND); el PGOOD del LM5164 queda sin conectar.
 
@@ -37,7 +37,7 @@ PARTES = [
     ("RT1", "Device:Thermistor_NTC", "NTC 10R 3A", "Varistor:RV_Disc_D9mm_W4.2mm_P5mm", 114.3, 50.8, {1: "VIN_F", 2: "VIN_R"}),
     ("D4", "Device:D_Schottky", "SS36", "Diode_SMD:D_SMB", 139.7, 50.8, {2: "VIN_R", 1: "VIN_D"}),
     ("D5", "Device:D_Zener", "SMBJ24A", "Diode_SMD:D_SMB", 165.1, 50.8, {1: "VIN_D", 2: "GND"}),
-    ("CB1", "Device:C_Polarized", "10000uF 35V", "Capacitor_THT:CP_Radial_D18.0mm_P7.50mm", 190.5, 50.8, {1: "VIN_D", 2: "GND"}),
+    ("CB1", "Device:C_Polarized", "1000uF 35V", "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm", 190.5, 50.8, {1: "VIN_D", 2: "GND"}),
     ("C9", "Device:C_Polarized", "47uF 50V", "Capacitor_SMD:CP_Elec_8x10", 215.9, 50.8, {1: "VIN_D", 2: "GND"}),
     ("C7", "Device:C", "2.2uF 100V X7R", "Capacitor_SMD:C_1210_3225Metric", 241.3, 50.8, {1: "VIN_D", 2: "GND"}),
     ("C8", "Device:C", "2.2uF 100V X7R", "Capacitor_SMD:C_1210_3225Metric", 266.7, 50.8, {1: "VIN_D", 2: "GND"}),
