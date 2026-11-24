@@ -5,8 +5,10 @@ Uso: generar_modulo_poder.py [directorio_salida]   (por defecto `modulo-poder/` 
 
 Entrada de 12 V de carro por bornes M3 -> fusible -> NTC limitador de corriente de arranque -> diodo de
 polaridad inversa -> TVS + condensadores de entrada (incluido uno de 1000 uF para aguantar las caídas de
-tensión del arranque) -> buck LM5164 de 5 V -> LDO AP2112K de 3,3 V. Sale por una regleta JST XH de 4 pines
-(5 V, GND, 3,3 V, GND); el PGOOD del LM5164 queda sin conectar.
+tensión del arranque) -> buck LM5164 de 5 V -> LDO AP2112K de 3,3 V. Sale por una regleta JST XH de 5 pines
+(5 V, GND, 3,3 V, GND y 3V3_IGN); el PGOOD del LM5164 queda sin conectar. 3V3_IGN es un interruptor P-MOS de
++3,3 V (AO3401A) comandado por la línea de 12 V de la llave (borne M3 `J4`, fusible, diodo y divisor de base),
+igual que el de la slave.
 
 Crea el esquemático (cableado solo por etiquetas, las redes salen del netlist del bloque de la slave), el
 proyecto y un PCB de dos capas con las huellas dispersas fuera de cualquier contorno: SIN pistas, SIN contorno y
@@ -41,6 +43,8 @@ PARTES = [
     ("C9", "Device:C_Polarized", "47uF 50V", "Capacitor_SMD:CP_Elec_8x10", 215.9, 50.8, {1: "VIN_D", 2: "GND"}),
     ("C7", "Device:C", "2.2uF 100V X7R", "Capacitor_SMD:C_1210_3225Metric", 241.3, 50.8, {1: "VIN_D", 2: "GND"}),
     ("C8", "Device:C", "2.2uF 100V X7R", "Capacitor_SMD:C_1210_3225Metric", 266.7, 50.8, {1: "VIN_D", 2: "GND"}),
+    # cerámico pequeño pegado a VIN y GND de U6 (el lazo de conmutación corto es la clave contra el EMI, hoja del LM5164 7.4.1.1)
+    ("C16", "Device:C", "1uF 100V X7R", "Capacitor_SMD:C_0805_2012Metric", 292.1, 50.8, {1: "VIN_D", 2: "GND"}),
     # buck
     ("R17", "Device:R", "1M", "Resistor_SMD:R_0805_2012Metric", 25.4, 114.3, {1: "VIN_D", 2: "EN"}),
     ("R18", "Device:R", "270k", "Resistor_SMD:R_0805_2012Metric", 50.8, 114.3, {1: "EN", 2: "GND"}),
@@ -60,16 +64,27 @@ PARTES = [
      {1: "+5V", 3: "+5V", 2: "GND", 5: "+3.3V"}),
     ("C14", "Device:C", "1uF", "Capacitor_SMD:C_0805_2012Metric", 190.5, 177.8, {1: "+5V", 2: "GND"}),
     ("C15", "Device:C", "1uF", "Capacitor_SMD:C_0805_2012Metric", 215.9, 177.8, {1: "+3.3V", 2: "GND"}),
-    ("J3", "Connector_Generic:Conn_01x04", "Salida_5V_3V3", "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", 292.1, 177.8,
-     {1: "+5V", 2: "GND", 3: "+3.3V", 4: "GND"}),
+    ("J3", "Connector_Generic:Conn_01x05", "Salida_5V_3V3_IGN", "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical", 292.1, 177.8,
+     {1: "+5V", 2: "GND", 3: "+3.3V", 4: "GND", 5: "3V3_IGN"}),
+    # interruptor de +3,3 V comandado por la línea de 12 V de la llave (IGN), igual que en la slave
+    ("J4", "Connector:Screw_Terminal_01x01", "borne M3 IGN", "MountingHole:MountingHole_3.2mm_M3_Pad", 25.4, 241.3, {1: "IGN"}),
+    ("F3", "Device:Fuse", "500mA", "Fuse:Fuse_1206_3216Metric", 63.5, 241.3, {1: "IGN", 2: "IGN_F"}),
+    ("D6", "Device:D", "1N4148W", "Diode_SMD:D_SOD-123", 101.6, 241.3, {2: "IGN_F", 1: "IGN_D"}),
+    ("R20", "Device:R", "100k", "Resistor_SMD:R_0805_2012Metric", 139.7, 241.3, {1: "IGN_D", 2: "IGN_B"}),
+    ("R21", "Device:R", "47k", "Resistor_SMD:R_0805_2012Metric", 165.1, 241.3, {1: "IGN_B", 2: "GND"}),
+    ("Q2", "Transistor_BJT:MMBT2222A", "MMBT2222A", SOT + ":SOT-23", 203.2, 241.3, {1: "IGN_B", 2: "GND", 3: "GATE_SW"}),
+    ("R19", "Device:R", "100k", "Resistor_SMD:R_0805_2012Metric", 241.3, 241.3, {1: "+3.3V", 2: "GATE_SW"}),
+    ("Q1", "Transistor_FET:AO3401A", "AO3401A", SOT + ":SOT-23", 279.4, 241.3, {1: "GATE_SW", 2: "+3.3V", 3: "3V3_IGN"}),
 ]
 NC = {"U7": [4], "U6": [6]}
-FLAGS = [("VIN_D", 190.5, 76.2, True), ("+5V", 127.0, 139.7, True), ("GND", 76.2, 76.2, False)]
-STOCK = [("Connector_Generic", "Conn_01x04"), ("Device", "Thermistor_NTC")]
+FLAGS = [("VIN_D", 190.5, 76.2, True), ("+5V", 127.0, 139.7, True), ("GND", 76.2, 76.2, False), ("3V3_IGN", 304.8, 241.3, True)]
+STOCK = [("Connector_Generic", "Conn_01x05"), ("Device", "Thermistor_NTC"), ("Transistor_FET", "AO3401A"), ("Device", "D")]
 
 
-def build(outdir):
-    os.makedirs(outdir, exist_ok=True)
+def build(outdir, solo=None):
+    """Con `solo` (conjunto de referencias) devuelve solo el texto de esas piezas, sin escribir nada."""
+    if solo is None:
+        os.makedirs(outdir, exist_ok=True)
     legacy = open(g.LEGACY_SCH).read()
     blocks = g.top_blocks(legacy)
     ls = legacy.index("(lib_symbols")
@@ -156,8 +171,12 @@ def build(outdir):
 
     body = ""
     for ref, lib, val, fp, x, y, mp in PARTES:
+        if solo is not None and ref not in solo:
+            continue
         lp = g.LibPins(g.get_lib(lib_text, lib))
         body += new_part(lib, ref, val, fp, x, y, lp) + tie(lp, x, y, mp, nc=NC.get(ref, ()))
+    if solo is not None:
+        return body
     for net, x, y, local in FLAGS:
         body += flag(net, x, y, local)
     hdr = ('(kicad_sch\n\t(version 20260306)\n\t(generator "eeschema")\n\t(generator_version "10.0")\n\t(uuid "%s")\n\t(paper "A3")\n\t' % ROOT) + lib_text + "\n"

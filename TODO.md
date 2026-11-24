@@ -58,6 +58,11 @@ Estado al 10 nov 2026. Las casillas marcadas `[x]` están hechas; el contexto de
 - [ ] Colocar, contornear y rutear el PCB de dos capas (huellas dispersas, sin cobre). Ver `docs/modulo-poder.md`.
 - [ ] Confirmar tensión del condensador de 1000 µF (35 V provisional; huella D10 mm paso 5 mm), que 1000 µF sostiene la entrada en el arranque, TVS (`SMBJ24A` provisional), NTC de arranque (10 Ω provisional) y que `F2` aguanta la I²t.
 - [ ] Decidir si se saca `EN` a la regleta y confirmar la regleta JST XH común (disponibilidad de 2/8/12 pines en JLCPCB).
+- [ ] `J3` (ahora de 5 pines) choca con el orificio M3 `H4`: ensanchar ≈ 2 mm el contorno por la derecha y mover `H1`/`H4`, o reubicar `H4`.
+- [x] `C16` colocado junto a `VIN`/GND de `U6` (4,9 mm de pista).
+- [ ] Módulo: acercar `C11` (salida, hoy a 9,1 mm de `L1`) y `C14` (entrada del LDO, a 9,8 mm de `U7`); ensanchar la pista `SW` (0,25 mm) si cabe; confirmar que `CB1` (35 V) aguanta el recorte del TVS `SMBJ24A` (≈ 39 V, por verificar); añadir rótulos de serigrafía para los pines de `J3` y los bornes; devolver a `J1`/`J2`/`J4` las referencias de los bornes (hoy `+V`/`GND`/`SW +V`) o poner esos rótulos como texto.
+- [ ] Colocar y rutear en el módulo el circuito de `3V3_IGN` (`J4` borne IGN, `F3`, `D6`, `R19`…`R21`, `Q1` y `Q2`; la salida es el pin 5 de `J3`), hoy aparcado a la derecha de la placa.
+- [ ] Los pads `J1`/`J2` del PCB del módulo se renombraron a `+V`/`GND` (referencias de las huellas): el DRC con paridad marca 4 errores de huellas; volver a `J1`/`J2` o aceptar el aviso.
 - [ ] Decidir si la slave pasa a usar este módulo en lugar de su bloque de poder.
 
 ## Repositorio
